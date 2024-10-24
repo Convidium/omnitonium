@@ -1,4 +1,6 @@
 body {
+  background-color: var(--default-white);
+  color: var(--default-black);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,7 +9,132 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  outline-color: var(--accent-color);
+
+
+}
+
+*::selection {
+  background-color: var(--accent-color);
+}
+
+
+:root {
+
+  /* Colors */
+
+  --default-white: rgb(255, 248, 232);
+  --half-white: rgb(246, 230, 203);
+  --half-white-shadow: rgb(214, 201, 178);
+  --default-black: rgb(103, 70, 54);
+  --half-black: rgb(121, 90, 75);
+  --neutral: rgb(143, 116, 103);
+
+  --onhover-color: rgb(105, 117, 101);
+  --accent-color: rgb(216, 230, 187);
+  --error-color: rgb(165, 49, 49);
+
+  /* Paddings */
+
+  --default-padding: 0.7rem;
+  --mini-padding: 0.5rem;
+
+  /* Margins */
+
+  --default-margin: 0.75rem;
+  --negative-margin: -0.25rem;
+
+  /* Gaps */
+
+  --default-gap: 0.5rem;
+
+  /* Box Shadows */
+
+  --shadow-full: rgba(103, 70, 54, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  --shadow-mini: rgba(103, 70, 54, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  --shadow-default: rgba(103, 70, 54, 0.2) 0px 10px 20px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
+
+  /* Font Sizes */
+
+  --font-regular: 1rem;
+  --font-big: 1.2rem;
+
+  /* Border Radius */
+
+  --round-border: 50%;
+}
+
+.rounded {
+  border-radius: 15px;
+}
+
+.relative-height {
+  display: block;
+  position: relative;
+  height: auto;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  /* Add any margin/padding here, if needed  */
+}
+
+.absolute-height {
+  display: block;
+  position: absolute;
+
+  /* Add any margin/padding here, if needed  */
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.btn {
+  padding: var(--mini-padding);
+  border-radius: 5px;
+  border: none;
+  background: none;
+  color: var(--default-black);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.f-reg {
+  font: var(--font-regular);
+  font-weight: 600;
+}
+
+.f-big {
+  font-size: var(--font-big);
+  font-weight: 600;
+}
+
+.no-select {
+  user-select: none;
+}
+
+.loading-svg {
+  animation: loading 1s linear infinite;
+}
+
+.rotate-180{
+  rotate: 180deg;
+}
+
+.full-width{
+  width: 100%;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

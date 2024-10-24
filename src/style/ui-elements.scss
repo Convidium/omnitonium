@@ -1,0 +1,119 @@
+// Input
+
+.add-input {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: var(--default-padding);
+    background-color: var(--default-white);
+    color: var(--half-black);
+    box-shadow:
+        inset 1px 1px 1px var(--half-white-shadow),
+        inset -1px -1px 1px var(--half-white-shadow);
+}
+
+.add-input::placeholder {
+    color: var(--neutral);
+    opacity: 0.5;
+}
+
+.add-input::before {
+    background: linear-gradient(to bottom, #292929, #000000);
+}
+
+.add-input:hover,
+.add-input:focus,
+.tags-input-wrapper:focus-within {
+    transform: translateY(-3px);
+    box-shadow:
+        inset 1px 1px 1px var(--half-white-shadow),
+        inset -1px -1px 1px var(--half-white-shadow),
+        2px 2px 4px var(--half-white-shadow);
+}
+
+// TAG INPUT
+
+.tags-input-wrapper {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2px;
+
+    .tag-item {
+        display: flex;
+        align-items: center;
+        height: 24px;
+        padding: var(--mini-padding);
+        margin: 5px;
+        border: 1px solid var(--half-white-shadow);
+        border-radius: 10px;
+
+        .title-tag {
+            cursor: pointer;
+            height: 12px;
+            width: 15px;
+            margin-left: 5px;
+            fill: var(--half-black);
+
+            &:hover {
+                scale: 1.2;
+            }
+        }
+
+        &:hover {
+            border: 1px solid var(--neutral);
+        }
+    }
+
+
+    .tag-input {
+        min-width: 50px;
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        height: 24px;
+        background-color: var(--default-white);
+        padding: var(--mini-padding);
+        margin: 5px;
+        color: var(--half-black);
+        border-bottom: 1px solid var(--half-white-shadow);
+
+        &::placeholder {
+            color: var(--neutral);
+            opacity: 0.5;
+        }
+    }
+
+    .tag-input:focus {
+        border-bottom: 1px solid var(--half-black);
+    }
+
+}
+
+// Text Area
+
+.textarea-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: -webkit-fill-available;
+
+    textarea {
+        width: -webkit-fill-available;
+        min-height: 50px;
+        resize: vertical;
+    }
+}
+
+.navigation-btn {
+    &:hover {
+        box-shadow:
+            4px 4px 8px var(--half-white-shadow);
+    }
+
+    &:active {
+        transform: translateY(-1px) !important;
+        box-shadow: none;
+    }
+}

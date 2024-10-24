@@ -1,0 +1,26 @@
+.add-record-block {
+
+    &::-webkit-scrollbar-track {
+        background-color: var(--default-white);
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px !important;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: var(--neutral);
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--half-black);
+    }
+}

@@ -1,0 +1,83 @@
+.add-record-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    overflow-y: overlay;
+    background-color: var(--half-white);
+    font-weight: 600;
+    width: 550px;
+
+    .header {
+        margin: var(--default-margin);
+    }
+
+    .splitting-line {
+        margin: 2px 0;
+        width: -webkit-fill-available;
+        opacity: 0.8;
+        border: 1px solid var(--half-black);
+        border-radius: 5px;
+        margin: 0 calc(var(--default-padding)*2);
+    }
+}
+
+.upload-btn {
+    margin-top: 10px;
+    border: 1px solid var(--neutral);
+    color: var(--neutral);
+
+    &:hover {
+        box-shadow: var(--shadow-mini);
+    }
+}
+
+.form-btn-block {
+    width: -webkit-fill-available;
+    padding: 0 calc(var(--default-padding)*2);
+    display: flex;
+    justify-content: space-between;
+
+    .btn {
+        padding: var(--mini-padding) var(--default-padding);
+        margin: var(--default-margin) 0;
+    }
+
+    .form-change {
+        display: flex;
+        gap: 10px;
+    }
+
+    .reset-btn {
+        background-color: var(--default-white);
+        border: 1px solid var(--neutral);
+        color: var(--neutral);
+
+        &:hover {
+            border: 1px solid var(--half-black);
+            color: var(--neutral);
+        }
+    }
+
+    .submit-btn {
+        background-color: var(--accent-color);
+        border: 1px solid var(--onhover-color);
+        color: var(--onhover-color);
+    }
+
+    .add-song-btn {
+        display: inline-flex;
+        align-items: center;
+        width: max-content;
+        font-size: 1rem;
+        background-color: var(--default-white);
+        border: 1px solid var(--neutral);
+        color: var(--half-black);
+
+        svg {
+            fill: var(--half-black);
+            width: 15px;
+            margin-left: 5px;
+        }
+    }
+}
