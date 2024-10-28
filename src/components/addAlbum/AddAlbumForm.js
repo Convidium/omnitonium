@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import '../../style/addAlbumForm.scss';
 import '../../style/ui-elements.scss';
 import '../../style/scrollbar.scss';
 
-import { ReactComponent as NextSVG } from '../../svg/next.svg';
 import { ReactComponent as AddSVG } from '../../svg/add.svg';
 import RecordData from './RecordData.js';
 import RecordSongs from './RecordSongs.js';

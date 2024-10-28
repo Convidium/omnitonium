@@ -14,7 +14,7 @@
         height: 220px;
         gap: var(--default-gap);
         border-radius: 5px;
-        border: 2px dotted var(--half-black);
+        border: 2px dashed var(--half-white-shadow);
         margin: var(--default-margin) 0;
         background-color: var(--default-white);
 
@@ -30,6 +30,10 @@
 
         #upload-file-input {
             display: none;
+        }
+
+        &.dragging{
+            border: 2px dashed var(--half-black);
         }
     }
 

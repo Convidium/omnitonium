@@ -14,6 +14,7 @@ function RecordData({ onDataChange }) {
     const supportedExtensions = ['jpeg', 'png', 'jpg'];
     const [URL, setURL] = useState("");
     const [imageState, setImageState] = useState("none");
+    const [dragState, setDragState] = useState(false);
     const inputRef = useRef("");
 
     const handleDataChange = (data, dataType) => {
@@ -28,9 +29,10 @@ function RecordData({ onDataChange }) {
         onDataChange(data, "mood-tags");                                         // Updating Data
     };
 
-    const handleSelected = (event) => {
+    const handleSelected = (selectedFile) => {
         try {
-            const selectedFile = event.target.files[0];
+            console.log(selectedFile);
+
             const selectedFileName = selectedFile.name.split('.').at(-1);
             if (supportedExtensions.includes(selectedFileName)) {
                 renderImage(selectedFile);
@@ -58,6 +60,27 @@ function RecordData({ onDataChange }) {
 
     const upload = () => {
         document.getElementById("upload-file-input").click();
+    }
+
+    const onDragOver = (e) => {
+        e.preventDefault();
+        setDragState(true);
+        e.dataTransfer.dropEffect = "copy";
+
+    }
+
+    const onDragLeave = (e) => {
+        e.preventDefault();
+        setDragState(false);
+        e.dataTransfer.dropEffect = "copy";
+
+    }
+
+    const onDrop = (e) => {
+        e.preventDefault();
+        setDragState(false);
+        const files = e.dataTransfer.files;
+        handleSelected(files[0]);
     }
 
     const reload = () => {
@@ -106,9 +129,12 @@ function RecordData({ onDataChange }) {
     return (
         <div className='record-data-block'>
             <div className="image-block">
-                <div className="dropzone-block no-select">
+                <div className={"dropzone-block no-select" + (dragState ? " dragging" : " ")}
+                    onDragOver={onDragOver}
+                    onDragLeave={onDragLeave}
+                    onDrop={onDrop}>
                     <input type='file' id="upload-file-input" name="upload-file-input"
-                        onChange={(e) => handleSelected(e)}
+                        onChange={(e) => handleSelected(e.target.files[0])}
                         ref={inputRef} />
                     <UploadSVG onClick={upload} />
                     <span onClick={upload}>Drop record cover here</span>
@@ -161,4 +187,4 @@ function RecordData({ onDataChange }) {
         </div>
     )
 }
-export default RecordData
+export default RecordData;

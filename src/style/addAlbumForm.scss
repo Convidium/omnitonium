@@ -43,6 +43,14 @@
         margin: var(--default-margin) 0;
     }
 
+    .btn:hover{
+        transform: translateY(-2px) !important;
+    }
+
+    .btn:active{
+        transform: translateY(0px) !important;
+    }
+
     .form-change {
         display: flex;
         gap: 10px;
