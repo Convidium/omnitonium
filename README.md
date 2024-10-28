@@ -2,7 +2,7 @@
 
 In the project directory, you can run:
 
-### `npm run start`
+# `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -10,7 +10,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `TODO`
+# `TODO`
 
 1) Rewrite SVG import from ES6 way to Require
 2) Rewrite color namings to: 
@@ -18,10 +18,10 @@ You may also see any lint errors in the console.
 3) Optimize "AddAlbumForm.js" size and structure
 
 
-### `Changes`
+# `Changes`
 
-# `24.10`
+### `24.10`
 1. Fixed bug with record cover rendering
 
-# `28.10`
+### `28.10`
 1. Added Dropzone feature to image Uploading
