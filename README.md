@@ -20,7 +20,8 @@ You may also see any lint errors in the console.
 
 ### `Changes`
 
-24.10
-    1. Fixed bug with record cover rendering
-28.10
-    1. Added Dropzone feature to image Uploading
+# `24.10`
+1. Fixed bug with record cover rendering
+
+# `28.10`
+1. Added Dropzone feature to image Uploading
