@@ -34,7 +34,7 @@ function DropzoneImage({ onDataChange }) {
 
         reader.addEventListener("load", () => {
             const decodedImage = decodeImage(reader.result, 'image/png');
-            onDataChange(decodedImage, "blob");                                     // Updating Data
+            onDataChange(decodedImage, "blob");
 
             setURL(reader.result);
             setImageState("loaded");
@@ -71,7 +71,7 @@ function DropzoneImage({ onDataChange }) {
         setImageState("none");
         setURL("");
         inputRef.current.value = "";
-        onDataChange(null, "blob");                                                 // Updating Data
+        onDataChange(null, "blob");
     }
 
     const ImagePreview = () => {
@@ -105,8 +105,6 @@ function DropzoneImage({ onDataChange }) {
                         <button className="btn close-btn" onClick={reload}><ReloadSVG /></button>
                     </div>
                 )
-            default:
-                break;
         }
     }
 
