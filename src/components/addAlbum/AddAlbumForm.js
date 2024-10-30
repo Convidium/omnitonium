@@ -3,12 +3,12 @@ import '../../style/addAlbumForm.scss';
 import '../../style/ui-elements.scss';
 import '../../style/scrollbar.scss';
 
-import { ReactComponent as AddSVG } from '../../svg/add.svg';
+import { ReactComponent as AddSVG } from '../../svg/next.svg';
 import RecordData from './RecordData.js';
 import RecordSongs from './RecordSongs.js';
 
 function AddAlbumForm() {
-    const [page, setPage] = useState("one");
+    const [page, setPage] = useState([1, 0]);
     const [recordData, setRecordData] = useState({
         cover: null,
         title: "Unknown",
@@ -52,22 +52,44 @@ function AddAlbumForm() {
                 break;
         }
     }
+
+    const submitData = (e) => {
+        e.preventDefault();
+    }
+
+    const pageState = () => {
+        switch (pageState) {
+            case 0:
+                
+                break;
+        
+            default:
+                break;
+        }
+    }
+
     return (
         <div className="relative-height add-record-block navbar-rounded">
             <div className="header f-big">
                 <span>Create new record</span>
             </div>
             <hr className="splitting-line" />
-            <RecordData onDataChange={handleDataChange}/>
-            {/* <RecordSongs/> */}
+            <RecordData onDataChange={handleDataChange} visibility={page[0] == 0 ? "hidden" : "visible"}/>
+            <RecordSongs visibility={page[1] == 0 ? "hidden" : "visible"} />
             <div className='form-btn-block'>
-                <button className="btn navigation-btn add-song-btn">
-                    <span>Add songs</span>
-                    <AddSVG />
-                </button>
+                <div className='form-navigation flex'>
+                    <button className="btn navigation-btn prev-next-btn prev" onClick={() => setPage([1, 0])}>
+                        <AddSVG className="rotate-180"/>
+                        <span>Prev</span>
+                    </button>
+                    <div>{page.indexOf(1) + 1}/2</div>
+                    <button className="btn navigation-btn prev-next-btn next" onClick={() => setPage([0, 1])}>
+                        <span>Next</span>
+                        <AddSVG />
+                    </button>
+                </div>
                 <div className='form-change'>
                     <button type='reset' className="btn navigation-btn reset-btn">Cancel</button>
-                    <button type='reset' className="btn navigation-btn reset-btn">Reset</button>
                     <button type='submit' className="btn navigation-btn submit-btn">Submit</button>
                 </div>
             </div>

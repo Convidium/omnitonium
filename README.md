@@ -15,7 +15,6 @@ You may also see any lint errors in the console.
 1) Rewrite SVG import from ES6 way to Require
 2) Rewrite color namings to: 
     white - lighter - light - high-neutral - neutral - low-neutral - dark - darker - black
-3) Optimize "AddAlbumForm.js" size and structure
 
 
 # `Changes`
@@ -25,3 +24,9 @@ You may also see any lint errors in the console.
 
 ### `28.10`
 1. Added Dropzone feature to image Uploading
+
+### `30.10`
+1. Optimized "RecordData.js" size and structure 
+2. Added module "RecordSongs.js" for creating songs (W.I.P.)
+3. Added page switcher feature (Data/Songs)
+4. Differentiated "DropzoneImage.js" into an independent module

@@ -37,17 +37,29 @@
     padding: 0 calc(var(--default-padding)*2);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    .form-navigation{
+        gap: 20px;
+        width: 65%;
+    }
+
+    .form-change{
+        justify-content: flex-end;
+        width: 35%;
+    }
 
     .btn {
         padding: var(--mini-padding) var(--default-padding);
         margin: var(--default-margin) 0;
+        font-size: 1rem;
     }
 
-    .btn:hover{
+    .btn:hover {
         transform: translateY(-2px) !important;
     }
 
-    .btn:active{
+    .btn:active {
         transform: translateY(0px) !important;
     }
 
@@ -58,10 +70,10 @@
 
     .reset-btn {
         background-color: var(--default-white);
-        border: 1px solid var(--neutral);
+        border: 1px solid var(--half-white-shadow);
         color: var(--neutral);
 
-        &:hover {
+        &:active {
             border: 1px solid var(--half-black);
             color: var(--neutral);
         }
@@ -73,19 +85,29 @@
         color: var(--onhover-color);
     }
 
-    .add-song-btn {
+    .prev-next-btn {
         display: inline-flex;
         align-items: center;
         width: max-content;
         font-size: 1rem;
         background-color: var(--default-white);
-        border: 1px solid var(--neutral);
-        color: var(--half-black);
+        border: 1px solid var(--half-white-shadow);
+        color: var(--neutral);
 
-        svg {
-            fill: var(--half-black);
+        &:active{
+            border: 1px solid var(--neutral);
+        }
+
+        svg{
+            fill: var(--neutral);
             width: 15px;
-            margin-left: 5px;
+        }
+
+        &.prev {
+            svg {margin-right: 5px;}
+        }
+        &.next {
+            svg {margin-left: 5px;}
         }
     }
 }

@@ -1,7 +1,7 @@
 .image-block {
     display: flex;
     width: -webkit-fill-available;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: var(--default-margin) 0;
     padding: 0 calc(var(--default-padding)*2);
 

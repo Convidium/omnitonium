@@ -129,6 +129,19 @@ body {
   width: 100%;
 }
 
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block;
+}
+
 @keyframes loading {
   0% {
     transform: rotate(0);
