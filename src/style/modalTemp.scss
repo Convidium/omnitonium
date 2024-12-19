@@ -1,22 +1,182 @@
-.modal{
+.modal-wrapper {
+    position: absolute;
+    width: fit-content;
     z-index: 10;
-    padding: var(--mini-padding);
+    padding: 0 15px;
     margin-top: -2%;
-    left: 65px;
+    left: 60px;
+}
+
+.modal {
+    display: flex;
+    padding: var(--default-padding);
     background-color: var(--default-white);
-    box-shadow: var(--shadow-mini);
+    box-shadow: inset 1px 1px 1px var(--half-white-shadow), inset -1px -1px 1px var(--half-white-shadow), 2px 2px 4px var(--half-white-shadow);
 
     -webkit-animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    .main-content {
+        max-width: 300px;
+        width: max-content;
+        display: flex;
+        justify-content: space-between;
+        gap: calc(var(--default-gap)*2);
+
+        .modal-cover {
+            display: flex;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+
+            img {
+                border-radius: 5%;
+                width: 100px;
+            }
+
+            .play-onhover {
+                background-color: rgba(0, 0, 0, 0);
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5%;
+                z-index: 2;
+                width: 100px;
+                height: 100px;
+
+                svg {
+                    cursor: pointer;
+                    pointer-events: none;
+                    opacity: 0;
+                    scale: 1;
+                    width: 30px;
+                    fill: var(--accent-color);
+
+                    &:hover {
+                        opacity: 0.8 !important;
+                        scale: 1.1;
+                    }
+                }
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, .3);
+
+                    svg {
+                        pointer-events: all;
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+
+        .modal-info {
+            span:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--default-gap)/2);
+        }
+
+        .album-additional {
+            display: flex;
+            gap: 5px;
+        }
+
+        .album-genre,
+        .album-tracks-count {
+            cursor: default;
+            width: fit-content;
+            padding: 2% 4%;
+            border-radius: 5px;
+            border: 1px solid var(--half-white);
+            color: var(--neutral);
+
+            &:hover {
+                border: 1px solid var(--half-black);
+                color: var(--half-black);
+            }
+        }
+    }
+
+    .vertical-line {
+        border: 1px solid var(--half-white-shadow);
+        margin: 0 var(--default-padding);
+    }
+
+    .see-full {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        cursor: pointer;
+        color: var(--default-white);
+        margin-top: auto;
+        margin-bottom: auto;
+
+        .btn {
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--half-white-shadow);
+
+            &:active {
+                border: 1px solid var(--half-black);
+            }
+
+            svg {
+                max-height: 100%;
+                fill: var(--neutral);
+            }
+
+            .play-svg {
+                max-height: 80%;
+            }
+
+            &:hover {
+                box-shadow: var(--shadow-mini);
+            }
+
+            &:active {
+                scale: 0.9;
+                transform: translateY(2px);
+            }
+        }
+
+    }
 }
 
 @-webkit-keyframes fadeIn {
-    0% { opacity: 0; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
+
 @keyframes fadeIn {
-    0% { opacity: 0; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

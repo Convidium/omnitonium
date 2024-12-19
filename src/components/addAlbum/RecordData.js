@@ -4,22 +4,14 @@ import '../../style/recordData.scss';
 import TagsInput from '../UI/TagsInput.js';
 import DropzoneImage from '../UI/DropzoneImage.js';
 
-function RecordData({ onDataChange, visibility }) {
+function RecordData({ onDataChange }) {
 
     const handleDataChange = (data, dataType) => {
-        onDataChange(data, dataType);                                         // Updating Data
-    };
-
-    const handleGenreChange = (data) => {
-        onDataChange(data, "genre-tags");                                         // Updating Data
-    };
-
-    const handleMoodChange = (data) => {
-        onDataChange(data, "mood-tags");                                         // Updating Data
+        onDataChange(data, dataType);
     };
 
     return (
-        <div className={'record-data-block ' + visibility}>
+        <div className={'record-data-block'}>
             <DropzoneImage onDataChange={onDataChange}/>
             <hr className="splitting-line" />
             <div className="content-addition">
@@ -46,12 +38,12 @@ function RecordData({ onDataChange, visibility }) {
                 <div className='input-block double-part'>
                     <span>Genre:</span>
                     <TagsInput
-                        onTagsChange={handleGenreChange} />
+                        onTagsChange={handleDataChange} dataType="genre-tags"/>
                 </div>
                 <div className='input-block double-part'>
                     <span>Mood:</span>
                     <TagsInput
-                        onTagsChange={handleMoodChange} />
+                        onTagsChange={handleDataChange} dataType="mood-tags"/>
                 </div>
                 <div className='input-block textarea-block double-part'>
                     <span>Record info:</span>

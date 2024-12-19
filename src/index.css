@@ -12,14 +12,11 @@ body {
 * {
   transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   outline-color: var(--neutral);
-
-
 }
 
 *::selection {
   background-color: var(--accent-color);
 }
-
 
 :root {
 
@@ -40,6 +37,7 @@ body {
 
   --default-padding: 0.7rem;
   --mini-padding: 0.5rem;
+  --tiny-padding: 0.25rem;
 
   /* Margins */
 
@@ -68,6 +66,10 @@ body {
 
 .rounded {
   border-radius: 15px;
+}
+
+.rounded-10 {
+  border-radius: 10px;
 }
 
 .relative-height {
@@ -140,6 +142,10 @@ body {
 
 .visible {
   display: block;
+}
+
+.padding-0{
+  padding: 0;
 }
 
 @keyframes loading {

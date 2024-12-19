@@ -1,7 +1,3 @@
-import React, { useRef, useState } from 'react'
-import '../../style/addAlbumForm.scss';
-
-
 function decodeImage(b64Data, contentType = '', sliceSize = 512) {
     const cleanedBase64Data = b64Data.replace(/^data:image\/[a-zA-Z]+;base64,/, '');
 

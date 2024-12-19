@@ -2,22 +2,24 @@ import React, { useState } from 'react'
 import '../../style/addAlbumForm.scss';
 import '../../style/ui-elements.scss';
 import '../../style/scrollbar.scss';
+import { ReactComponent as LoadingSVG } from '../../svg/loading.svg';
 
-import { ReactComponent as AddSVG } from '../../svg/next.svg';
 import RecordData from './RecordData.js';
-import RecordSongs from './RecordSongs.js';
+import generateID from '../functions/generateID.js';
+import uploadFiles from '../functions/uploadFiles.js';
+
 
 function AddAlbumForm() {
-    const [page, setPage] = useState([1, 0]);
+    const [isLoading, setIsLoading] = useState(false);
     const [recordData, setRecordData] = useState({
-        cover: null,
-        title: "Unknown",
+        name: "Unknown",
         artist: "Unknown",
-        year: "Unknown",
-        label: "Unknown",
-        info: "",
         genre: ["Unknown"],
         mood: ["Unknown"],
+        cover: "",
+        label: "Unknown",
+        year: "Unknown",
+        info: "",
         songIDs: []
     });
 
@@ -55,42 +57,38 @@ function AddAlbumForm() {
 
     const submitData = (e) => {
         e.preventDefault();
+        setIsLoading(true);
+
+        const albumID = generateID("a");
+        console.log(albumID);
+        
+        uploadFiles(albumID, recordData);
+        setIsLoading(false);
     }
 
     const pageState = () => {
         switch (pageState) {
             case 0:
-                
+
                 break;
-        
+
             default:
                 break;
         }
     }
 
     return (
-        <div className="relative-height add-record-block navbar-rounded">
+        <div className={"relative-height add-record-block navbar-rounded" + (isLoading ? " loading" : "")}>
             <div className="header f-big">
                 <span>Create new record</span>
             </div>
             <hr className="splitting-line" />
-            <RecordData onDataChange={handleDataChange} visibility={page[0] == 0 ? "hidden" : "visible"}/>
-            <RecordSongs visibility={page[1] == 0 ? "hidden" : "visible"} />
+            <RecordData onDataChange={handleDataChange} />
+            {isLoading ? <LoadingSVG className="loading-foreground loading-svg"/> : null}
             <div className='form-btn-block'>
-                <div className='form-navigation flex'>
-                    <button className="btn navigation-btn prev-next-btn prev" onClick={() => setPage([1, 0])}>
-                        <AddSVG className="rotate-180"/>
-                        <span>Prev</span>
-                    </button>
-                    <div>{page.indexOf(1) + 1}/2</div>
-                    <button className="btn navigation-btn prev-next-btn next" onClick={() => setPage([0, 1])}>
-                        <span>Next</span>
-                        <AddSVG />
-                    </button>
-                </div>
                 <div className='form-change'>
                     <button type='reset' className="btn navigation-btn reset-btn">Cancel</button>
-                    <button type='submit' className="btn navigation-btn submit-btn">Submit</button>
+                    <button type='submit' className="btn navigation-btn submit-btn" onClick={submitData}>Submit</button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ReactComponent as CloseSVG } from '../../svg/close.svg';
 
-function TagsInput({ onTagsChange }) {
+function TagsInput({ onTagsChange, dataType }) {
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
 
@@ -14,13 +14,12 @@ function TagsInput({ onTagsChange }) {
         const { key } = e;
         const newtag = tag.trim();
 
-
         if ((key == ',' || key == "Enter" || key == "Tab") && newtag.length && !tags.includes(newtag)) {
             e.preventDefault();
-            const newTags = [...tags, newtag];
+            const newTags = [...tags, newtag.slice(0, 40)];
             
             setTags(newTags);
-            onTagsChange(newTags);
+            onTagsChange(newTags, dataType);
             setTag('');
         } else if ((key == "Backspace") && !newtag.length && tags.length) {
             e.preventDefault();
@@ -28,7 +27,7 @@ function TagsInput({ onTagsChange }) {
             const lastTag = tagsCopy.pop();
 
             setTags(tagsCopy);
-            onTagsChange(tagsCopy);
+            onTagsChange(tagsCopy, dataType);
             setTag(lastTag);
         }
     }
@@ -36,7 +35,7 @@ function TagsInput({ onTagsChange }) {
     const removeTag = (index) => {
         const newTags = tags.filter((tag, i) => i != index);
         setTags(newTags);
-        onTagsChange(newTags);
+        onTagsChange(newTags, dataType);
     }
 
 
@@ -53,6 +52,7 @@ function TagsInput({ onTagsChange }) {
                 value={tag}
                 placeholder='Divide tags with "," or "Enter" or "Tab"'
                 className="tag-input"
+                type='text'
                 onChange={handleChange}
                 onKeyDown={handleKeyChange} />
         </div>

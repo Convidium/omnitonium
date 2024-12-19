@@ -20,6 +20,20 @@
         border-radius: 5px;
         margin: 0 calc(var(--default-padding)*2);
     }
+
+    &.loading{
+        .record-data-block{
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .loading-foreground{
+            bottom: 50%;
+            width: 40px;
+            position: absolute;
+            fill: var(--default-black);
+        }
+    }
 }
 
 .upload-btn {
@@ -36,13 +50,8 @@
     width: -webkit-fill-available;
     padding: 0 calc(var(--default-padding)*2);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-
-    .form-navigation{
-        gap: 20px;
-        width: 65%;
-    }
 
     .form-change{
         justify-content: flex-end;
@@ -83,31 +92,5 @@
         background-color: var(--accent-color);
         border: 1px solid var(--onhover-color);
         color: var(--onhover-color);
-    }
-
-    .prev-next-btn {
-        display: inline-flex;
-        align-items: center;
-        width: max-content;
-        font-size: 1rem;
-        background-color: var(--default-white);
-        border: 1px solid var(--half-white-shadow);
-        color: var(--neutral);
-
-        &:active{
-            border: 1px solid var(--neutral);
-        }
-
-        svg{
-            fill: var(--neutral);
-            width: 15px;
-        }
-
-        &.prev {
-            svg {margin-right: 5px;}
-        }
-        &.next {
-            svg {margin-left: 5px;}
-        }
     }
 }
