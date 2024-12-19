@@ -19,10 +19,10 @@ body {
 }
 
 :root {
-
   /* Colors */
 
   --default-white: rgb(255, 248, 232);
+  --quarter-white: rgb(230, 215, 189);
   --half-white: rgb(246, 230, 203);
   --half-white-shadow: rgb(214, 201, 178);
   --default-black: rgb(103, 70, 54);
@@ -54,6 +54,12 @@ body {
   --shadow-mini: rgba(103, 70, 54, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   --shadow-default: rgba(103, 70, 54, 0.2) 0px 10px 20px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
 
+  /* Font Families */
+
+  --font-default: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+
   /* Font Sizes */
 
   --font-regular: 1rem;
@@ -62,6 +68,7 @@ body {
   /* Border Radius */
 
   --round-border: 50%;
+  --default-border: 5px;
 }
 
 .rounded {
@@ -147,6 +154,11 @@ body {
 .padding-0{
   padding: 0;
 }
+
+.overflow-y{
+  overflow-y: scroll;
+}
+
 
 @keyframes loading {
   0% {

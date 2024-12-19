@@ -7,8 +7,6 @@ import { ReactComponent as InfoSVG } from '../../svg/info.svg';
 
 
 function ModalTemplate({ errorState, data }) {
-    console.log(data);
-    
     const [genres, setGenres] = useState(
         errorState == false ? JSON.parse(data.album_genre).genre_names : "No Data"
     );

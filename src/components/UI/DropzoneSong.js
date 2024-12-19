@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import decodeSong from '../functions/decodeSong.js'
+import MiniPlayer from '../UI/MiniPlayer.js';
 
 import { ReactComponent as UploadSVG } from '../../svg/upload.svg';
 import { ReactComponent as SongSVG } from '../../svg/song.svg';
@@ -8,7 +9,7 @@ import { ReactComponent as CloseSVG } from '../../svg/close.svg';
 import { ReactComponent as ErrorSVG } from '../../svg/error.svg';
 import { ReactComponent as ReloadSVG } from '../../svg/reload.svg';
 
-function DropzoneSong({ onDataChange }) {
+function DropzoneSong({ onDataChange, albumData }) {
     const supportedExtensions = ['mp3', 'flac', 'ogg'];
     const [URL, setURL] = useState("");
     const [songState, setSongState] = useState("none");
@@ -16,7 +17,6 @@ function DropzoneSong({ onDataChange }) {
     const inputRef = useRef("");
 
     const handleSelected = (selectedFile) => {
-            console.log(selectedFile);
         try {
             const selectedFileName = selectedFile.name.split('.').at(-1);
             if (supportedExtensions.includes(selectedFileName)) {
@@ -24,7 +24,7 @@ function DropzoneSong({ onDataChange }) {
             } else {
                 throw new TypeError("unsupported extention");
             }
-            
+
         } catch (error) {
             setSongState("error");
         }
@@ -36,10 +36,6 @@ function DropzoneSong({ onDataChange }) {
 
         reader.addEventListener("load", () => {
             const decodedSong = decodeSong(reader.result, `audio/${selectedFileName}`);
-            // onDataChange(decodedSong, "blob");
-            console.log(decodedSong);
-            
-
             setURL(reader.result);
             setSongState("loaded");
         });
@@ -82,28 +78,36 @@ function DropzoneSong({ onDataChange }) {
         switch (songState) {
             case "none":
                 return (
-                    <div className=''>
-                        <SongSVG />
-                        <span>Song will appear here</span>
+                    <div className={"dropzone-block no-select" + (dragState ? " dragging" : " ")}
+                        onDragOver={onDragOver}
+                        onDragLeave={onDragLeave}
+                        onDrop={onDrop}>
+                        <input type='file' id="upload-audio-input" name="upload-file-input"
+                            onChange={(e) => handleSelected(e.target.files[0])}
+                            ref={inputRef} />
+                        <UploadSVG onClick={upload} />
+                        <span onClick={upload}>Drop record file here</span>
+                        <button
+                            className="btn upload-btn f-reg"
+                            onClick={upload}>
+                            Upload
+                        </button>
                     </div>
                 )
             case "loading":
                 return (
-                    <div className=''>
+                    <div className='mini-player-current'>
                         <LoadingSVG className="loading-svg" />
                         <span>Loading...</span>
                     </div>
                 )
             case "loaded":
                 return (
-                    <div className=''>
-                        <button className="btn close-btn" onClick={reload}><CloseSVG /></button>
-                        <audio controls src={URL} type="audio/mpeg"></audio>
-                    </div>
+                    <MiniPlayer songData={URL} albumData={albumData} />
                 )
             case "error":
                 return (
-                    <div className=''>
+                    <div className='mini-player-current'>
                         <ErrorSVG />
                         <span>Something went wrong. Please try again</span>
                         <button className="btn close-btn" onClick={reload}><ReloadSVG /></button>
@@ -114,21 +118,6 @@ function DropzoneSong({ onDataChange }) {
 
     return (
         <div className="song-block double-part">
-            <div className={"dropzone-block no-select" + (dragState ? " dragging" : " ")}
-                onDragOver={onDragOver}
-                onDragLeave={onDragLeave}
-                onDrop={onDrop}>
-                <input type='file' id="upload-audio-input" name="upload-file-input"
-                    onChange={(e) => handleSelected(e.target.files[0])}
-                    ref={inputRef} />
-                <UploadSVG onClick={upload} />
-                <span onClick={upload}>Drop record cover here</span>
-                <button
-                    className="btn upload-btn f-reg"
-                    onClick={upload}>
-                    Upload
-                </button>
-            </div>
             <div className="song-player-block no-select">
                 <SongPreview />
             </div>

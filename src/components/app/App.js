@@ -3,9 +3,7 @@ import './App.css';
 
 import SidePanel from "../sidePanel/SidePanel.js";
 import ErrorMessage from "../errors/ErrorMessage.js";
-import AddAlbumForm from '../addAlbum/AddAlbumForm.js';
-import RecordSongs from '../addSong/RecordSongs.js';
-import MusicPlayer from '../musicPlayer/MusicPlayer.js';
+import AddRecord from '../addRecord/addRecord.js';
 
 function App() {
   const [errorState, setErrorState] = useState(false);
@@ -15,17 +13,15 @@ function App() {
     setErrorState(true);
     setErrorData(error);
   }
-
   const closeError = () => {
     setErrorState(false);
   }
   return (
     <div className="App">
       <SidePanel handleError={handleError} />
-      <AddAlbumForm/>
-      {errorState ? <ErrorMessage closeError={closeError} errorData={errorData}/> : null}
-      {/* <RecordSongs/> */}
-      <MusicPlayer/>
+      <AddRecord/>
+      {/* <MusicPlayer/> */}
+      {errorState ? <ErrorMessage closeError={closeError} errorData={errorData} /> : null}
     </div>
   );
 }

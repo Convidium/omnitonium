@@ -8,12 +8,54 @@
     font-weight: 600;
     width: 550px;
 
+    .carousel {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+
+        .carousel-track {
+            display: flex;
+            gap: 50px;
+            transform: translateX(0px);
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+
+            .carousel-item {
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+                width: 550px;
+                overflow-y: scroll;
+
+                &.active {
+                    opacity: 1;
+                }
+
+                &>div {
+                    width: 550px;
+                }
+            }
+        }
+    }
+
+    .carousel-controls {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+
+        .carousel-control {
+            width: 100px;
+        }
+    }
+
     .header {
         margin: var(--default-margin);
     }
 
     .splitting-line {
-        margin: 2px 0;
+        margin: 3px 0;
         width: -webkit-fill-available;
         opacity: 0.8;
         border: 1px solid var(--half-black);
@@ -21,13 +63,13 @@
         margin: 0 calc(var(--default-padding)*2);
     }
 
-    &.loading{
-        .record-data-block{
+    &.loading {
+        .record-data-block {
             opacity: 0.3;
             pointer-events: none;
         }
 
-        .loading-foreground{
+        .loading-foreground {
             bottom: 50%;
             width: 40px;
             position: absolute;
@@ -53,9 +95,9 @@
     justify-content: flex-end;
     align-items: center;
 
-    .form-change{
+    .form-change {
+        display: flex;
         justify-content: flex-end;
-        width: 35%;
     }
 
     .btn {
@@ -70,11 +112,6 @@
 
     .btn:active {
         transform: translateY(0px) !important;
-    }
-
-    .form-change {
-        display: flex;
-        gap: 10px;
     }
 
     .reset-btn {

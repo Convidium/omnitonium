@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import '../../style/recordData.scss';
-import TagsInput from '../UI/TagsInput.js';
-import DropzoneImage from '../UI/DropzoneImage.js';
+import '../../../style/recordData.scss';
+import TagsInput from '../../UI/TagsInput.js';
+import DropzoneImage from '../../UI/DropzoneImage.js';
 
 function RecordData({ onDataChange }) {
 
@@ -12,7 +12,7 @@ function RecordData({ onDataChange }) {
 
     return (
         <div className={'record-data-block'}>
-            <DropzoneImage onDataChange={onDataChange}/>
+            <DropzoneImage onDataChange={(data) => handleDataChange(data, "blob")}/>
             <hr className="splitting-line" />
             <div className="content-addition">
                 <div className='input-block single-part'>

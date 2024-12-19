@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react'
 import '../../style/addAlbumForm.scss';
 import axios from "axios";
 
@@ -14,6 +13,13 @@ function uploadFiles(albumID, data) {
         label: data.label,
         year: data.year,
     }
+
+    // try {
+    //     const data = new FormData();
+    //     data.append('song', data.cover)
+    // } catch (error) {
+
+    // }
     
 }
 

@@ -1,6 +1,5 @@
 function decodeImage(b64Data, contentType = '', sliceSize = 512) {
     const cleanedBase64Data = b64Data.replace(/^data:image\/[a-zA-Z]+;base64,/, '');
-
     const byteCharacters = atob(cleanedBase64Data);
     const byteArrays = [];
 
@@ -11,14 +10,10 @@ function decodeImage(b64Data, contentType = '', sliceSize = 512) {
         for (let i = 0; i < slice.length; i++) {
             byteNumbers[i] = slice.charCodeAt(i);
         }
-
         const byteArray = new Uint8Array(byteNumbers);
         byteArrays.push(byteArray);
     }
-
     const blob = new Blob(byteArrays, { type: contentType });
-    console.log(blob);
-    
     return blob;
 }
 

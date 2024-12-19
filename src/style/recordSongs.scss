@@ -1,91 +1,96 @@
-.song-properties-block{
-    margin: var(--default-margin) 0;
-    padding: 0 calc(var(--default-padding)*2);  
-    background-color: var(--half-white);
+.song-list-wrapper {
+    width: -webkit-fill-available !important;
+    padding: var(--default-padding) calc(var(--default-padding)* 2);
 
-    .header {
-        margin: var(--default-margin);
-        text-align: center;
-    }
-
-    .splitting-line {
-        margin: 2px 0;
-        width: -webkit-fill-available;
-        opacity: 0.8;
-        border: 1px solid var(--half-black);
-        border-radius: 5px;
-    }
-
-    .grid{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px 15px;
-        margin: calc(var(--default-margin)*2) 0;
-    }
-
-    .single-part {
-        grid-auto-columns: 1fr;
-    }
-
-    .double-part {
-        grid-column: 1/3;
-    }
-
-    .input-block {
-        display: flex;
-        flex-direction: column;
-        font-weight: 600;
-    }
-
-    .input-block span {
-        margin-left: 5px;
-        margin-bottom: 5px;
-    }
-}
-
-.song-block {
-    display: flex;
-    flex-direction: column;
-    width: -webkit-fill-available;
-    justify-content: space-around;
-
-    .dropzone-block {
+    .song-list {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: calc(var(--default-gap)/2);
-        border-radius: 5px;
-        border: 2px dashed var(--half-white-shadow);
-        background-color: var(--default-white);
-        padding: var(--default-padding) 0;
+        gap: 10px;
+        border-radius: var(--default-border);
+        background-color: var(--quarter-white);
+        padding: var(--default-padding);
 
-        svg {
-            fill: var(--neutral);
-            width: 40px;
+        .song-item {
+            display: flex;
+            width: 95%;
+            background-color: var(--default-white);
+            border: 1px solid var(--half-white-shadow);
+            border-radius: var(--default-border);
+            padding: var(--default-padding);
+            // cursor: grab;
+            margin: 0 1px;
+
+            .song-position{
+                color: var(--neutral);
+                width: 6%;
+            }
+            .song-name{
+                width: 80%;
+            }
+            .song-duration{
+                color: var(--neutral);
+                width: 8%;
+            }
+            .song-drag{
+                display: flex;
+                justify-content: center;
+                width: 6%;
+                svg{
+                    fill: var(--neutral);
+                    width: 60%;
+                    cursor: grab;
+
+                    &:hover{
+                        fill: var(--default-black);
+                    }
+                }
+            }
+
+            &:hover {
+                box-shadow: var(--shadow-mini);
+            }
         }
 
-        span {
-            cursor: default;
-            color: var(--neutral);
+        .drag-indicator{
+            width: 40%;
+            height: 3px;
+            background-color: var(--neutral);
+            border-radius: 5px;
         }
 
-        #upload-audio-input {
-            display: none;
-        }
 
-        &.dragging{
-            border: 2px dashed var(--half-black);
+        .add-song {
+            width: 30%;
+            padding: 0;
+                border: 1px solid var(--neutral);
+
+            .add-song-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+                text-align: center;
+                font-family: var(--font-default);
+                font-weight: 600;
+                font-size: var(--font-regular);
+
+                svg {
+                    width: 20px;
+                    fill: var(--default-black);
+                }
+            }
+
+            &:hover {
+                transform: translateY(-2px);
+                scale: 1.01;
+            }
+            &:active {
+                transform: translateY(0px);
+                scale: 1;
+                box-shadow: none;
+            }
         }
     }
-
-    .song-player-block {
-        padding: var(--default-padding) 0;
-
-        svg {
-            fill: var(--half-black);
-            width: 40px;
-        }
-    }
-
 }

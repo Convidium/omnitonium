@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import decodeImage from '../functions/decodeImage.js'
+import getColorScheme from '../functions/getColorScheme';
 
 import { ReactComponent as UploadSVG } from '../../svg/upload.svg';
 import { ReactComponent as ImageSVG } from '../../svg/image.svg';
@@ -34,9 +35,12 @@ function DropzoneImage({ onDataChange }) {
 
         reader.addEventListener("load", () => {
             const decodedImage = decodeImage(reader.result, 'image/png');
-            onDataChange(decodedImage, "blob");
+            onDataChange(decodedImage);
 
             setURL(reader.result);
+            getColorScheme(reader.result, 
+                accentColors => localStorage.setItem("accentColorsArray", JSON.stringify(accentColors))
+            );
             setImageState("loaded");
         });
         reader.readAsDataURL(selectedFile);
@@ -50,14 +54,12 @@ function DropzoneImage({ onDataChange }) {
         e.preventDefault();
         setDragState(true);
         e.dataTransfer.dropEffect = "copy";
-
     }
 
     const onDragLeave = (e) => {
         e.preventDefault();
         setDragState(false);
         e.dataTransfer.dropEffect = "copy";
-
     }
 
     const onDrop = (e) => {
@@ -71,7 +73,8 @@ function DropzoneImage({ onDataChange }) {
         setImageState("none");
         setURL("");
         inputRef.current.value = "";
-        onDataChange(null, "blob");
+        onDataChange(null);
+        localStorage.setItem("accentColorsArray", JSON.stringify([]))
     }
 
     const ImagePreview = () => {

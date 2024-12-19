@@ -42,11 +42,13 @@ function MusicPlayer() {
         fetchAlbumData();
         fetchSongsData();
         console.log(songFetch);
-        
+
     }, []);
     return (
         <div className="music-palyer-wrapper side-panel navbar-rounded relative-height">
-            12
+            <div className='background-cover'>
+                
+            </div>
         </div>
     );
 }

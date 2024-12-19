@@ -1,0 +1,94 @@
+.mini-player-wrapper {
+    .mini-player-preview {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 250px;
+        border-radius: 10px;
+        overflow: hidden;
+
+        .song-cover {
+            width: 100%;
+            position: absolute;
+            z-index: 2;
+            color: white;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .player-controls {
+            background-color: rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            opacity: 0;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            .cancel-track {
+                height: 20%;
+            }
+
+            .song-play {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 70px;
+                height: 70px;
+
+                svg {
+                    opacity: 0.8;
+                    fill: var(--contrastingColor);
+
+                    &:hover {
+                        opacity: 0.9;
+                        cursor: pointer;
+                    }
+
+                    &:active {
+                        scale: 1;
+                    }
+                }
+            }
+
+            .song-track {
+                position: absolute;
+                width: 100%;
+                height: 20%;
+                bottom: 0;
+            }
+
+            .volume-track {
+                position: absolute;
+            }
+
+        }
+    }
+
+    audio {
+        display: none;
+    }
+}
+
+.mini-player-current{
+    border-radius: var(--default-border);
+    background-color: var(--quarter-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
