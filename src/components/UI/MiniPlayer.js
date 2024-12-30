@@ -27,8 +27,8 @@ function MiniPlayer({ songData, albumData }) {
                         setAlbumCover(base64Image);
                     }
                 )
+            setCssVariable(JSON.parse(localStorage.getItem("MusicPlayerColors")));
         }
-        setCssVariable(JSON.parse(localStorage.getItem("accentColorsArray")));
     }, [])
 
     const handlePlayStop = () => {
@@ -45,7 +45,7 @@ function MiniPlayer({ songData, albumData }) {
         <div className='mini-player-wrapper'>
             <div className='mini-player-preview'>
                 <div className='song-cover'>
-                    <img src={albumCover} />
+                    <img src={albumCover} alt="" />
                 </div>
                 <div className='player-controls'>
                     {/* <div className='cancel-track'>

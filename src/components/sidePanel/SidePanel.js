@@ -14,14 +14,15 @@ function SidePanel({ handleError }) {
     const [hoveredAlbum, setHoveredAlbum] = useState(null);
 
     const [loadingState, setLoadingState] = useState(false);
+    const [isLoadedState, setIsLoadedState] = useState(false);
     const [errorState, setErrorState] = useState(false);
-    const [cover, setCover] = useState(<AlbumSVG className="padding" />);
 
     useEffect(() => {
         async function fetchData() {
             try {
+                setLoadingState(true);
                 const response = await fetch('http://localhost:5000/album_details');
-                if (response.ok == false) {
+                if (response.ok === false) {
                     setErrorState(true);
                     handleError({
                         type: "404",
@@ -31,45 +32,22 @@ function SidePanel({ handleError }) {
                 } else {
                     const data = await response.json();
                     setAlbumFetch(data);
+                    setIsLoadedState(true);
+                    setLoadingState(false);
                 }
-                setLoadingState(true);
             } catch (error) {
                 handleError({
                     type: "404",
                     title: "Цейво, no data detected",
                     info: "Maybe, turn on database, maybe reload it, I dunno. 404 not found I guees"
                 })
+                setAlbumFetch([]);
+                setLoadingState(false);
             }
         }
         fetchData();
     }, []);
 
-    const albums = [
-        {
-            title: "Pet Sounds",
-            artist: "the Beach Boys"
-        },
-        {
-            title: "SMiLE",
-            artist: "the Beach Boys"
-        },
-        {
-            title: "Sgt Pepper's Lonely Hearts Club Band",
-            artist: "The Beatles"
-        },
-        {
-            title: "Revolver",
-            artist: "The Beatles"
-        },
-        {
-            title: "Abbey Road",
-            artist: "The Beatles"
-        },
-        {
-            title: "Crisis? What Crisis?",
-            artist: "Supertramp"
-        }
-    ]
     const albumList = albumFetch.map((albumData, index) => {
         return (
             <div
@@ -79,9 +57,9 @@ function SidePanel({ handleError }) {
                 onMouseLeave={() => setHoveredAlbum(null)}
             >
                 <button className="sqare-btn padding-0">
-                    {albumData.album_cover != "" ? <img src={bufferToBase(albumData.album_cover)} className='square-cover' /> : cover}
+                    {albumData.album_cover !== "" ? <img src={bufferToBase(albumData.album_cover)} className='square-cover' alt="" /> : <AlbumSVG className="padding" />}
                 </button>
-                {hoveredAlbum == index && (
+                {hoveredAlbum === index && (
                     <ModalTemplate
                         errorState={errorState}
                         data={albumData}
@@ -103,10 +81,15 @@ function SidePanel({ handleError }) {
             </div>
             <hr className="splitting-line" />
             <div className="albums-list">
-                {loadingState == true ?
+                {loadingState === true ?
+                    <div className='loading'><LoadingSVG /></div>
+                    :
+                    null
+                }
+                {isLoadedState === true ?
                     albumList
                     :
-                    <div className='loading'><LoadingSVG /></div>
+                    null
                 }
             </div>
             <hr className="splitting-line" />

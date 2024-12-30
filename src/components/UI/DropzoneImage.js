@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import decodeImage from '../functions/decodeImage.js'
-import getColorScheme from '../functions/getColorScheme';
+import getAverageRGB from '../functions/getAverageColor.js';
 
 import { ReactComponent as UploadSVG } from '../../svg/upload.svg';
 import { ReactComponent as ImageSVG } from '../../svg/image.svg';
@@ -38,8 +38,8 @@ function DropzoneImage({ onDataChange }) {
             onDataChange(decodedImage);
 
             setURL(reader.result);
-            getColorScheme(reader.result, 
-                accentColors => localStorage.setItem("accentColorsArray", JSON.stringify(accentColors))
+            getAverageRGB(reader.result,
+                colors => localStorage.setItem("MusicPlayerColors", JSON.stringify(colors))
             );
             setImageState("loaded");
         });
@@ -97,7 +97,7 @@ function DropzoneImage({ onDataChange }) {
                 return (
                     <div className='cover-image'>
                         <button className="btn close-btn" onClick={reload}><CloseSVG /></button>
-                        <img src={URL} className='cover' />
+                        <img src={URL} className='cover' alt="" />
                     </div>
                 )
             case "error":
@@ -108,6 +108,8 @@ function DropzoneImage({ onDataChange }) {
                         <button className="btn close-btn" onClick={reload}><ReloadSVG /></button>
                     </div>
                 )
+            default:
+                break;
         }
     }
 

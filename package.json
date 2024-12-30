@@ -43,5 +43,9 @@
   },
   "devDependencies": {
     "sass": "^1.79.4"
+  },
+  "devServer": {
+    "hot": true,
+    "open": true
   }
 }
