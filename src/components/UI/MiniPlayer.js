@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import "../../style/miniPlayer.scss"
-
+import TrackRange from './TrackRange';
 import { ReactComponent as PlaySVG } from '../../svg/play.svg';
 import { ReactComponent as PauseSVG } from '../../svg/pause.svg';
 import blobToBase64 from '../functions/blobToBase64';
@@ -9,9 +9,12 @@ import setCssVariable from '../functions/setGlobalCSSValues';
 function MiniPlayer({ songData, albumData }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [position, setPosition] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [volume, setVolume] = useState(0.5);
     const [albumCover, setAlbumCover] = useState();
 
     const audioRef = useRef(null);
+
     useEffect(() => {
         const audio = audioRef.current;
         if (audio) {
@@ -21,52 +24,77 @@ function MiniPlayer({ songData, albumData }) {
 
     useEffect(() => {
         if (albumData.cover !== "") {
-            blobToBase64(albumData.cover)
-                .then(
-                    base64Image => {
-                        setAlbumCover(base64Image);
-                    }
-                )
+            blobToBase64(albumData.cover).then((base64Image) => {
+                setAlbumCover(base64Image);
+            });
             setCssVariable(JSON.parse(localStorage.getItem("MusicPlayerColors")));
         }
-    }, [])
+    }, [albumData]);
+
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (audio) {
+            const updatePosition = () => setPosition(audio.currentTime);
+            audio.addEventListener("timeupdate", updatePosition);
+            audio.addEventListener("loadedmetadata", () => setDuration(audio.duration));
+            audio.addEventListener("ended", handleSongEnd); // Detect song end
+
+            return () => {
+                audio.removeEventListener("timeupdate", updatePosition);
+            };
+        }
+    }, []);
 
     const handlePlayStop = () => {
-        const audio = audioRef.current;
-        if (isPlaying) {
-            audio.pause();
-        } else if (!isPlaying) {
-            audio.play();
-        }
-        setIsPlaying(!isPlaying);
+        setIsPlaying((prev) => !prev);
+    };
+
+    const handleSongEnd = () => {
+        setIsPlaying(false); // Stop playback
+        setPosition(0);      // Reset position to start
+    };
+
+    const handleRangeChange = (e) => {
+        const newPosition = parseFloat(e);
+        setPosition(newPosition);
+        audioRef.current.currentTime = newPosition;
+    };
+
+    const handleVolumeChange = (e) => {
+        const newVolume = parseFloat(e.target.value);
+        setVolume(newVolume);
+        audioRef.current.volume = newVolume;
     };
 
     return (
-        <div className='mini-player-wrapper'>
-            <div className='mini-player-preview'>
-                <div className='song-cover'>
-                    <img src={albumCover} alt="" />
+        <div className="mini-player-wrapper">
+            <div className="mini-player-preview">
+                <div className="song-cover">
+                    <img src={albumCover} alt=''/>
                 </div>
-                <div className='player-controls'>
-                    {/* <div className='cancel-track'>
-                        X
-                    </div> */}
-                    <div className='song-play' onClick={handlePlayStop}>
+                <div className="player-controls">
+                    <div className="song-play" onClick={handlePlayStop}>
                         {isPlaying ? <PauseSVG /> : <PlaySVG />}
                     </div>
                     <div className='song-track'>
-                        <div className='song-range'></div>
-                        <div className='song-thumb'></div>
-                        <input type='range' step="0.01" className='range' onChange={e => setPosition(e.target.value)} />
+                        <TrackRange max={duration} value={position} onChange={(val) => handleRangeChange(val)} />
                     </div>
-                    <div className='volume-track'>
-                        <div className='song-range'></div>
-                        <div className='song-thumb'></div>
+                    <div className="volume-track">
+                        <input
+                            type="range"
+                            step="0.01"
+                            className="volume-range"
+                            min="0"
+                            max="1"
+                            value={volume}
+                            onChange={handleVolumeChange}
+                            orient="vertical" // Optional for certain browsers
+                        />
                     </div>
                 </div>
             </div>
-            <audio ref={audioRef} src={songData} type="audio/mpeg"></audio>
+            <audio ref={audioRef} src={songData} type="audio/mpeg" />
         </div>
-    )
+    );
 }
 export default MiniPlayer;

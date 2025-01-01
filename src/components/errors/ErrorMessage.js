@@ -1,10 +1,24 @@
-import "../../style/errorMessage.scss"
+import React, { useEffect } from 'react';
+import "../../style/errorMessage.scss";
+
 import { ReactComponent as ErrorSVG } from '../../svg/error.svg';
 import { ReactComponent as CloudExclamationSVG } from '../../svg/cloud-exclamation.svg';
 import { ReactComponent as CloseSVG } from '../../svg/close.svg';
 
 function ErrorMessage({ errorData, closeError }) {
-    
+    const handleKeyDown = (event) => {
+        if (event.key === "Escape" || event.key === "Backspace") {
+            closeError();
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+          window.removeEventListener("keydown", handleKeyDown);
+        };
+      }, []);
+
     return (
         <div className="full-screen dark-bg">
             <div className="error-wrapper rounded">
@@ -21,7 +35,7 @@ function ErrorMessage({ errorData, closeError }) {
                         </div>
                     </div>
                 </div>
-                <button className="error-close-btn btn" onClick={() => closeError()}><CloseSVG/></button>
+                <button className="error-close-btn btn" onClick={() => closeError()}><CloseSVG /></button>
             </div>
         </div>
     );

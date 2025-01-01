@@ -88,6 +88,7 @@
     justify-content: space-around;
 
     .song-player-block {
+        height: 240px;
         padding: var(--default-padding) 0;
         .dropzone-block {
             display: flex;
@@ -98,7 +99,7 @@
             border-radius: 5px;
             border: 2px dashed var(--half-white-shadow);
             background-color: var(--default-white);
-            height: 200px;
+            height: 100%;
     
             svg {
                 fill: var(--neutral);

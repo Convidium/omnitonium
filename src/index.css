@@ -21,7 +21,11 @@ body {
 :root {
   /* Colors */
 
-  --contrastingColor: rgb(52, 35, 27);
+  /* Values for mini player color scheme  */
+  --invertedColor: rgb(52, 35, 27);
+  --invTrackColor: rgb(230, 215, 189);
+
+  /* Arbitrary color scheme for the website  */
   --default-white: rgb(255, 248, 232);
   --quarter-white: rgb(230, 215, 189);
   --half-white: rgb(246, 230, 203);

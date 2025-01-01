@@ -55,10 +55,27 @@ function getAverageRGB(base64Image, callback, skipStep = 8) {
             const avgG = Math.round(totalG / totalPixels);
             const avgB = Math.round(totalB / totalPixels);
 
-            const averageColor = { r: avgR, g: avgG, b: avgB };
-            const invertedColor = getInvertedColor(averageColor);
 
-            callback({ averageColor: averageColor, invertedColor: invertedColor });
+
+            function getTopColorsFromBottom(colorMap, count) {
+                return Object.entries(colorMap)
+                    .sort((a, b) => a[1] - b[1]) // Sort by frequency in ascending order
+                    .slice(0, count) // Take the first N (least frequent)
+                    .map(([color]) => {
+                        const [r, g, b] = color.split(',').map(Number);
+                        return { r, g, b };
+                    });
+            }
+    
+            // Get top 2 colors from each category
+            const neutral = getTopColorsFromBottom(neutralColors, 2);
+            const dark = getTopColorsFromBottom(darkColors, 2);
+            const light = getTopColorsFromBottom(lightColors, 2);
+
+            const averageColor = { r: avgR, g: avgG, b: avgB };
+            const invertedColor = getInvertedColor(averageColor, dark[0], light[0]);
+
+            callback({ averageColor: averageColor, invertedColor: invertedColor, darkColors: dark, neutralColors: neutral, lightColors: lightColors });
         };
 
         img.onerror = () => reject("Failed to load image");

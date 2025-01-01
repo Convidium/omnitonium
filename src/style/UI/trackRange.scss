@@ -1,0 +1,45 @@
+.track-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: -webkit-fill-available;
+    height: 10px;
+    margin: 0 10%;
+    padding: 2% 0;
+    cursor: pointer;
+  }
+  
+  .track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--invTrackColor);
+    border-radius: 5px;
+  }
+
+  .range{
+    width: 100%;
+  }
+  
+  .progress {
+    position: absolute;
+    height: 100%;
+    background: var(--invertedColor);
+    border-radius: 5px;
+  }
+  
+  .thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: var(--invertedColor);
+    border-radius: 50%;
+    cursor: grab;
+  }
+  
+  .thumb:active {
+    cursor: grabbing;
+  }
