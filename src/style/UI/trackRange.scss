@@ -1,45 +1,94 @@
+/* Base styles for the track-wrapper */
 .track-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 2% 0;
+  cursor: pointer;
+
+  /* Styles for horizontal direction */
+  &.horizontal {
     width: -webkit-fill-available;
     height: 10px;
     margin: 0 10%;
-    padding: 2% 0;
-    cursor: pointer;
+
+    .thumb {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 14px;
+    }
+
+    .track {
+      .progress {
+        width: 0;
+        /* Default progress width */
+        height: 100%;
+      }
+    }
   }
-  
+
+  /* Styles for vertical direction */
+  &.vertical {
+    height: -webkit-fill-available;
+    width: 10px;
+    margin: 10% 0;
+
+    .thumb {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 10px;
+    }
+
+    .track {
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+
+      .progress {
+        height: 0;
+        width: 100%;
+      }
+    }
+  }
+
   .track {
     position: relative;
     width: 100%;
     height: 100%;
     background: var(--invTrackColor);
-    border-radius: 5px;
+    border-radius: 2px;
+
+    .progress {
+      position: absolute;
+      background: var(--invertedColor);
+      border-radius: 2px;
+      opacity: 0.9;
+    }
+
+    .thumb {
+      position: absolute;
+      background: var(--invertedColor);
+      border-radius: 2px;
+      cursor: grab;
+
+      &:hover {
+        filter: hue-rotate(15deg);
+        scale: 1.1;
+        cursor: grab;
+      }
+
+      &:active {
+        filter: hue-rotate(15deg);
+        scale: 1;
+        cursor: grabbing;
+      }
+    }
   }
 
-  .range{
+  .range {
     width: 100%;
   }
-  
-  .progress {
-    position: absolute;
-    height: 100%;
-    background: var(--invertedColor);
-    border-radius: 5px;
-  }
-  
-  .thumb {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 14px;
-    height: 14px;
-    background: var(--invertedColor);
-    border-radius: 50%;
-    cursor: grab;
-  }
-  
-  .thumb:active {
-    cursor: grabbing;
-  }
+}

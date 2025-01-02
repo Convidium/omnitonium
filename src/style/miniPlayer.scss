@@ -13,7 +13,7 @@
         &:hover {
             .song-cover {
                 img {
-                    width: 103%;
+                    scale: 1.02;
                 }
             }
         }
@@ -29,8 +29,9 @@
             color: white;
 
             img {
-                width: 100%;
-                height: fit-content;
+                width: max-content;
+                min-width: 100%;
+                height: max-content;
                 transition: 0.4s;
             }
         }
@@ -49,11 +50,6 @@
 
             &:hover {
                 opacity: 1;
-
-                .song-track {
-                    opacity: 0.8;
-                    transform: translateY(0px);
-                }
             }
 
             .cancel-track {
@@ -96,8 +92,7 @@
                 justify-content: center;
                 align-items: center;
                 height: 60%;
-                width: 100px;
-                padding: 10% 0;
+                padding: 0 15%;
                 position: relative;
                 transform: translateX(220px);
                 animation: 0.3s forwards volume-disappear;
@@ -130,50 +125,36 @@
             .volume-range {
                 writing-mode: vertical-lr;
                 direction: rtl;
-                appearance: slider-vertical;
                 width: 16px;
                 vertical-align: bottom;
-                // /* Bottom to top, for vertical orientation */
-                // -webkit-appearance: none;
-                // /* Remove default styling */
-                // appearance: none;
                 height: 100%;
-                // /* Fill the height of the container */
-                // width: 6px;
-                // /* Adjust the track width */
-                // background: linear-gradient(to top, #ff5733 0%, #333 100%);
-                // border-radius: 5px;
-                // outline: none;
-                // cursor: pointer;
             }
 
-            // .volume-range::-webkit-slider-thumb {
-            //     -webkit-appearance: none;
-            //     appearance: none;
-            //     width: 12px;
-            //     height: 12px;
-            //     background: #ff5733;
-            //     border-radius: 50%;
-            //     cursor: pointer;
-            //     position: relative;
-            // }
+            .delete-audiofile{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 18px;
+                height: 18px;
+                margin: 14px;
+                background-color: transparent;
+                cursor: pointer;
 
-            // .volume-range::-moz-range-thumb {
-            //     width: 12px;
-            //     height: 12px;
-            //     background: #ff5733;
-            //     border-radius: 50%;
-            //     cursor: pointer;
-            // }
+                &:hover{
+                    svg{opacity: 0.8;scale: 1.1;}
+                }
+                &:active{
+                    svg{opacity: 1;scale: 1;}
+                }
+                svg{
+                    fill: var(--invertedColor);
+                    opacity: 0.5;
+                }
 
-            // .volume-range::-ms-thumb {
-            //     width: 12px;
-            //     height: 12px;
-            //     background: #ff5733;
-            //     border-radius: 50%;
-            //     cursor: pointer;
-            // }
-
+            }
         }
     }
 

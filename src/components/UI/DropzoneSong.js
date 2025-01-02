@@ -3,9 +3,7 @@ import decodeSong from '../functions/decodeSong.js'
 import MiniPlayer from '../UI/MiniPlayer.js';
 
 import { ReactComponent as UploadSVG } from '../../svg/upload.svg';
-import { ReactComponent as SongSVG } from '../../svg/song.svg';
 import { ReactComponent as LoadingSVG } from '../../svg/loading.svg';
-import { ReactComponent as CloseSVG } from '../../svg/close.svg';
 import { ReactComponent as ErrorSVG } from '../../svg/error.svg';
 import { ReactComponent as ReloadSVG } from '../../svg/reload.svg';
 
@@ -70,8 +68,6 @@ function DropzoneSong({ onDataChange, albumData }) {
     const reload = () => {
         setSongState("none");
         setURL("");
-        inputRef.current.value = "";
-        onDataChange(null, "blob");
     }
 
     const SongPreview = () => {
@@ -103,7 +99,7 @@ function DropzoneSong({ onDataChange, albumData }) {
                 )
             case "loaded":
                 return (
-                    <MiniPlayer songData={URL} albumData={albumData} />
+                    <MiniPlayer songData={URL} albumData={albumData} onDelete={reload} />
                 )
             case "error":
                 return (

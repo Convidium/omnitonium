@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react'
 import "../../style/miniPlayer.scss"
 import TrackRange from './TrackRange';
+import VolumeRange from './VolumeRange';
 import { ReactComponent as PlaySVG } from '../../svg/play.svg';
 import { ReactComponent as PauseSVG } from '../../svg/pause.svg';
+import { ReactComponent as DeleteSVG } from '../../svg/trash-can.svg';
 import blobToBase64 from '../functions/blobToBase64';
 import setCssVariable from '../functions/setGlobalCSSValues';
 
-function MiniPlayer({ songData, albumData }) {
+function MiniPlayer({ songData, albumData, onDelete }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [position, setPosition] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -38,6 +40,7 @@ function MiniPlayer({ songData, albumData }) {
             audio.addEventListener("timeupdate", updatePosition);
             audio.addEventListener("loadedmetadata", () => setDuration(audio.duration));
             audio.addEventListener("ended", handleSongEnd); // Detect song end
+            audioRef.current.volume = 0.5;
 
             return () => {
                 audio.removeEventListener("timeupdate", updatePosition);
@@ -61,7 +64,7 @@ function MiniPlayer({ songData, albumData }) {
     };
 
     const handleVolumeChange = (e) => {
-        const newVolume = parseFloat(e.target.value);
+        const newVolume = parseFloat(e);
         setVolume(newVolume);
         audioRef.current.volume = newVolume;
     };
@@ -70,7 +73,7 @@ function MiniPlayer({ songData, albumData }) {
         <div className="mini-player-wrapper">
             <div className="mini-player-preview">
                 <div className="song-cover">
-                    <img src={albumCover} alt=''/>
+                    <img src={albumCover} alt='' />
                 </div>
                 <div className="player-controls">
                     <div className="song-play" onClick={handlePlayStop}>
@@ -80,16 +83,10 @@ function MiniPlayer({ songData, albumData }) {
                         <TrackRange max={duration} value={position} onChange={(val) => handleRangeChange(val)} />
                     </div>
                     <div className="volume-track">
-                        <input
-                            type="range"
-                            step="0.01"
-                            className="volume-range"
-                            min="0"
-                            max="1"
-                            value={volume}
-                            onChange={handleVolumeChange}
-                            orient="vertical" // Optional for certain browsers
-                        />
+                        <VolumeRange max={1} value={volume} onChange={(val) => handleVolumeChange(val)} />
+                    </div>
+                    <div className='delete-audiofile' onClick={onDelete}>
+                        <DeleteSVG/>
                     </div>
                 </div>
             </div>

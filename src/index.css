@@ -23,7 +23,7 @@ body {
 
   /* Values for mini player color scheme  */
   --invertedColor: rgb(52, 35, 27);
-  --invTrackColor: rgb(230, 215, 189);
+  --invTrackColor: rgba(230, 215, 189, 0.5);
 
   /* Arbitrary color scheme for the website  */
   --default-white: rgb(255, 248, 232);
