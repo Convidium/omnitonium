@@ -7,8 +7,8 @@ import { ReactComponent as LoadingSVG } from '../../svg/loading.svg';
 import { ReactComponent as ErrorSVG } from '../../svg/error.svg';
 import { ReactComponent as ReloadSVG } from '../../svg/reload.svg';
 
-function DropzoneSong({ onDataChange, albumData }) {
-    const supportedExtensions = ['mp3', 'flac', 'ogg'];
+function DropzoneSong({ handleAudiofile, albumData }) {
+    const supportedExtensions = ['mp3', 'flac', 'ogg', "wav"];
     const [URL, setURL] = useState("");
     const [songState, setSongState] = useState("none");
     const [dragState, setDragState] = useState(false);
@@ -35,6 +35,7 @@ function DropzoneSong({ onDataChange, albumData }) {
         reader.addEventListener("load", () => {
             const decodedSong = decodeSong(reader.result, `audio/${selectedFileName}`);
             setURL(reader.result);
+            handleAudiofile(reader.result);
             setSongState("loaded");
         });
         reader.readAsDataURL(selectedFile);
@@ -68,13 +69,14 @@ function DropzoneSong({ onDataChange, albumData }) {
     const reload = () => {
         setSongState("none");
         setURL("");
+        handleAudiofile("");
     }
 
     const SongPreview = () => {
         switch (songState) {
             case "none":
                 return (
-                    <div className={"dropzone-block no-select" + (dragState ? " dragging" : " ")}
+                    <div className={"dropzone-block validable no-select" + (dragState ? " dragging" : " ")}
                         onDragOver={onDragOver}
                         onDragLeave={onDragLeave}
                         onDrop={onDrop}>

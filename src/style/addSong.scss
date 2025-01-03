@@ -45,6 +45,23 @@
             display: flex;
             flex-direction: column;
             font-weight: 600;
+
+            &.red {
+                span {
+                    color: var(--error-color);
+                }
+
+                input {
+                    box-shadow: none;
+                    border: 1px solid var(--error-color);
+                    color: var(--error-color);
+
+                }
+
+                ::placeholder {
+                    color: var(--error-color) !important;
+                }
+            }
         }
 
         .input-block span {
@@ -53,7 +70,7 @@
         }
     }
 
-    .form-btn-block { 
+    .form-btn-block {
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -90,6 +107,7 @@
     .song-player-block {
         height: 240px;
         padding: var(--default-padding) 0;
+
         .dropzone-block {
             display: flex;
             flex-direction: column;
@@ -100,27 +118,31 @@
             border: 2px dashed var(--half-white-shadow);
             background-color: var(--default-white);
             height: 100%;
-    
+
             svg {
                 fill: var(--neutral);
                 width: 40px;
             }
-    
+
             span {
                 cursor: default;
                 color: var(--neutral);
             }
-    
+
             #upload-audio-input {
                 display: none;
             }
-    
+
             &.dragging {
                 border: 2px dashed var(--half-black);
             }
+
+            &.red{
+                border: 2px dashed var(--error-color);
+            }
         }
 
-        .mini-player-wrapper{
+        .mini-player-wrapper {
             height: 100%;
         }
 
