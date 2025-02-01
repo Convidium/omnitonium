@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Grotezk Regular";
+    src: url("../font/ApfelGrotezk-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Grotezk Fett";
+    src: url("../font/ApfelGrotezk-Fett.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Grotezk Satt";
+    src: url("../font/ApfelGrotezk-Satt.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Grotezk Mittel";
+    src: url("../font/ApfelGrotezk-Mittel.woff2") format("woff2");
+}

@@ -1,0 +1,74 @@
+.navbar {
+    width: -webkit-fill-available;
+    padding: calc(var(--default-padding)*3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    .navbar-step {
+        opacity: 0.3;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 110%;
+        font-family: "Grotezk Mittel";
+        letter-spacing: 0.4px;
+        user-select: none;
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            line-height: 15px;
+            text-align: center;
+            padding: var(--tiny-padding);
+            border-radius: var(--round-border);
+            background-color: var(--half-black);
+            color: var(--half-white);
+            user-select: none;
+        }
+
+        .step-title {
+            color: var(--half-black);
+        }
+
+        svg {
+            fill: var(--default-white);
+        }
+    }
+
+    .step-done {
+        opacity: 0.6;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.9;
+        }
+
+        .step-number {
+            background-color: var(--success-color);
+        }
+    }
+
+    .step-active {
+        opacity: 1;
+
+        .step-number {
+            background-color: var(--warning-color);
+        }
+    }
+
+    .navbar-line {
+        opacity: 0.05;
+        width: 130px;
+        border: 1px solid var(--half-black);
+        border-radius: 5px;
+        margin: 0;
+
+        &.line-active {
+            opacity: 0.7;
+        }
+    }
+}

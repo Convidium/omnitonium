@@ -1,39 +1,19 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../../../style/recordSongs.scss';
 
 import { ReactComponent as AddSongSVG } from '../../../svg/add-song.svg';
 import { ReactComponent as DragSVG } from '../../../svg/drag.svg';
+import fetchSongs from "../../functions/fetchSongs";
 
 function RecordSongs({ handleEvent }) {
-    const [songs, setSongs] = useState([
-        {
-            position: 1,
-            name: "Sgt Pepper's Lonely Hearts Club Band",
-            duration: 122,
-            isDragged: false,
-        },
-        {
-            position: 2,
-            name: "With a Little Help From My Friends",
-            duration: 165,
-            isDragged: false,
-        },
-        {
-            position: 3,
-            name: "Lucy in The Sky With Diamonds",
-            duration: 207,
-            isDragged: false,
-        },
-        {
-            position: 4,
-            name: "Getting Better",
-            duration: 167,
-            isDragged: false,
-        }
-    ]);
+    const [songs, setSongs] = useState([]);
     const [songIndex, setSongIndex] = useState(null);
     const songItemDrag = useRef(null);
     const songItemDragOver = useRef(null);
+
+    // useEffect(() => {
+    //     fetchSongs("songsByAlbum", albumID);
+    // }, [])
     
     const onDragStart = (e, index) => {
         songItemDrag.current = index;

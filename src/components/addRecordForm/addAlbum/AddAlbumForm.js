@@ -3,6 +3,7 @@ import '../../../style/addAlbumForm.scss';
 import '../../../style/ui-elements.scss';
 import '../../../style/scrollbar.scss';
 import { ReactComponent as LoadingSVG } from '../../../svg/loading.svg';
+import { useNavigate } from 'react-router-dom';
 
 import RecordData from './RecordData.js';
 import RecordSongs from './RecordSongs.js';
@@ -11,6 +12,7 @@ import uploadFiles from '../../functions/uploadFiles.js';
 
 
 function AddAlbumForm({ onDataChange, handleEvent }) {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
     const trackRef = useRef(null);
@@ -60,7 +62,7 @@ function AddAlbumForm({ onDataChange, handleEvent }) {
         switch (currentPage) {
             case 0:
                 return <>
-                    <button type='reset' className="btn carousel-control navigation-btn reset-btn">Cancel</button>
+                    <button type='reset' className="btn carousel-control navigation-btn reset-btn" onClick={() => navigate('/')}>Cancel</button>
                     <button type='submit' className="btn carousel-control navigation-btn submit-btn" onClick={handleNext}>Continue</button>
                 </>
             case 1:

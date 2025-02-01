@@ -7,9 +7,11 @@ import { ReactComponent as AlbumCollectionSVG } from '../../svg/album-collection
 import { ReactComponent as AlbumSVG } from '../../svg/record-vinyl.svg';
 import { ReactComponent as AddAlbumSVG } from '../../svg/add-record.svg';
 import { ReactComponent as LoadingSVG } from '../../svg/loading.svg';
+import { useNavigate } from 'react-router-dom';
 // import { ReactComponent as ErrorSVG } from '../../svg/error.svg';
 
 function SidePanel({ handleError }) {
+    const navigate = useNavigate();
     const [albumFetch, setAlbumFetch] = useState([]);
     const [hoveredAlbum, setHoveredAlbum] = useState(null);
 
@@ -94,7 +96,7 @@ function SidePanel({ handleError }) {
             </div>
             <hr className="splitting-line" />
             <div className="album-add">
-                <button className="sqare-btn action-btn">
+                <button className="sqare-btn action-btn" onClick={() => navigate('/new-album')}>
                     <AddAlbumSVG />
                 </button>
             </div>

@@ -19,23 +19,21 @@ function DropzoneSong({ handleAudiofile, albumData }) {
             const selectedFileName = selectedFile.name.split('.').at(-1);
             if (supportedExtensions.includes(selectedFileName)) {
                 renderImage(selectedFile, selectedFileName);
-            } else {
-                throw new TypeError("unsupported extention");
             }
-
+            else {
+                throw new TypeError("unsupported file extention");
+            }
         } catch (error) {
             setSongState("error");
         }
     }
 
     const renderImage = (selectedFile, selectedFileName) => {
-        const reader = new FileReader();
         setSongState("loading");
-
+        const reader = new FileReader();
         reader.addEventListener("load", () => {
-            const decodedSong = decodeSong(reader.result, `audio/${selectedFileName}`);
             setURL(reader.result);
-            handleAudiofile(reader.result);
+            handleAudiofile(selectedFile);
             setSongState("loaded");
         });
         reader.readAsDataURL(selectedFile);

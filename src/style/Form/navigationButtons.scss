@@ -1,0 +1,64 @@
+.form-btn-block {
+    width: -webkit-fill-available;
+    padding: calc(var(--default-padding)*3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .nav-btn{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-family: "Grotezk Mittel";
+        font-size: 110%;
+        width: 100px;
+        padding: var(--mini-padding);
+        background-color: var(--default-white);
+        color: var(--neutral);
+        border: 2px solid var(--quarter-white);
+        border-radius: var(--default-border);
+        cursor: pointer;
+        &:hover{
+            transform: translateY(-2px);
+        }
+        &:active{
+            transform: translateY(0);
+        }
+
+        &.nav-back{
+            svg{
+                transform: rotate(180deg);
+            }
+        }
+
+        &.nav-confirm,&.nav-leave{
+            width: 120px;
+        }
+
+        &.nav-confirm{
+            color: var(--success-color);
+            &:active{
+                border-color: var(--success-color);
+            }
+            svg{
+                fill: var(--success-color);
+            }
+        }
+
+        &.nav-leave{
+            color: var(--error-color);
+            &:active{
+                border-color: var(--error-color);
+            }
+            svg{
+                transform: rotate(180deg);
+                fill: var(--error-color);
+            }
+        }
+
+        svg{
+            height: 20px;
+            fill: var(--neutral);
+        }
+    }
+}

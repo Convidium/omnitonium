@@ -26,17 +26,20 @@ body {
   --invTrackColor: rgba(230, 215, 189, 0.5);
 
   /* Arbitrary color scheme for the website  */
-  --default-white: rgb(255, 248, 232);
-  --quarter-white: rgb(230, 215, 189);
-  --half-white: rgb(246, 230, 203);
-  --half-white-shadow: rgb(214, 201, 178);
-  --default-black: rgb(103, 70, 54);
-  --half-black: rgb(121, 90, 75);
-  --neutral: rgb(143, 116, 103);
+  --default-white: #ffffff;
+  --quarter-white: #d5d5d5;
+  --half-white: #ededed;
+  --half-white-shadow: #808080;
+  --neutral: #555555;
+  --half-black: #2a2a2a;
+  --default-black: #000000;
 
-  --onhover-color: rgb(105, 117, 101);
+  --onhover-color: rgb(113, 187, 88);
+  --success-color: rgb(50, 121, 27);
+  --success-light-color: rgb(209, 243, 198);
   --accent-color: rgb(216, 230, 187);
   --error-color: rgb(165, 49, 49);
+  --warning-color: rgb(212, 170, 96);
 
   /* Paddings */
 

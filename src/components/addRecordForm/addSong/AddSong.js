@@ -3,6 +3,7 @@ import '../../../style/addSong.scss';
 
 import { ReactComponent as UploadSVG } from '../../../svg/upload.svg';
 import DropzoneSong from '../../UI/DropzoneSong.js';
+import uploadTrack from '../../functions/uploadTrack.js';
 
 function AddSong({ handleEvent, albumData }) {
     const [songName, setSongName] = useState("");
@@ -36,24 +37,20 @@ function AddSong({ handleEvent, albumData }) {
         }
     };
 
-    const handleSubmit = () => {
+    // Function that handles input data and uploads it to the server, and uploads audiofile to database directory
+    const handleSubmit = async () => {
         if (audiofileExists && songNameExists) {
-            try {
-                // function that will add song to database and then return the ID here
-            } catch (error) {
-                handleEvent("add-song-failed", songName);
-            }
-            // Sucsess Message
-            handleEvent("add-song-sucsess", songName);
+            const trackProps = [audiofile, songName, writerRef.current.value, composerRef.current.value, infoRef.current.value, albumData.albumID];
+            await uploadTrack(trackProps, handleEvent);
         }
-        
-        // Fail Message
-        if (songNameExists) {
-            handleEvent("add-song-failed", songName);
-        } else {
-            handleEvent("add-song-failed", "This song");
+        else if (songNameExists) {
+            handleEvent("add-song-failed", { messageType: "error", songName: songName });
+        }
+        else {
+            handleEvent("add-song-failed", { messageType: "error", songName: "This Song" });
         }
     }
+
     return (
         <div className='relative-height navbar-rounded song-properties-block'>
             <div className='double-part'>

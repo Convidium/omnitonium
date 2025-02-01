@@ -11,18 +11,28 @@
         justify-content: center;
         align-items: center;
         width: fit-content;
-        background-color: var(--default-white);
+        color: rgb(156, 109, 28);
+        background-color: rgb(255, 229, 184);
         border-radius: var(--default-border);
-        border: 2px solid var(--half-black);
+        border: 2px solid rgb(212, 170, 96);
+        padding: 0 calc(var(--default-padding)/2);
 
-        &.red{
-            color: var(--error-color);
-            border: 2px solid var(--error-color);
-            .splitting-line{
-                border: 1px solid var(--error-color);
-            }
+
+        &.error,&.error-fetch,&.error-data{
+            color: rgb(156, 28, 28);
+            background-color: rgb(255, 226, 219);
+            border: 2px solid rgb(255, 181, 171);
             svg{
-                fill: var(--error-color);
+                fill: rgb(156, 28, 28) !important;
+            }
+        }
+
+        &.success{
+            color: rgb(58, 156, 28);
+            background-color: rgb(229, 255, 219);
+            border: 2px solid rgb(175, 218, 164);
+            svg{
+                fill: rgb(39, 156, 28) !important;
             }
         }
 
@@ -45,25 +55,11 @@
             aspect-ratio: 1/1;
 
             svg{
-                fill: var(--half-black);
-            }
-        }
-
-        .close-message:hover{
-            background-color: var(--half-black);
-
-            svg{
-                fill: var(--default-white);
-                &:active{
-                    scale: 0.9;
+                fill: rgb(156, 109, 28);
+                &:hover{
+                    scale: 1.2;
                 }
             }
-        }
-
-        .splitting-line{
-            height: 100%;
-            width: 0px;
-            border: 1px solid var(--half-black);
         }
     }
 }

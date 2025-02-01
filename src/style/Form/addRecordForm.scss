@@ -1,0 +1,27 @@
+.form-wrapper {
+    position: absolute;
+    margin: var(--default-margin) auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+    overflow-y: overlay;
+    background-color: var(--half-white);
+    box-shadow: rgba(103, 70, 54, 0.12) 0px 1px 3px, rgba(103, 70, 54, 0.24) 0px 1px 2px;
+    font-weight: 600;
+    width: 900px;
+    max-width:80%;
+
+    .form-content{
+        width: -webkit-fill-available;
+
+        .step-title{
+            padding: 0 calc(var(--default-margin)*3) var(--default-margin);
+            font-size: 140%;
+            font-family: "Grotezk Regular";
+            text-align: center;
+            color: var(--half-black);
+        }
+    }
+}

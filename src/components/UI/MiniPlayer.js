@@ -14,6 +14,7 @@ function MiniPlayer({ songData, albumData, onDelete }) {
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(0.5);
     const [albumCover, setAlbumCover] = useState();
+    const [imageStyling, setImageStyling] = useState({ width: "100%" });
 
     const audioRef = useRef(null);
 
@@ -27,6 +28,18 @@ function MiniPlayer({ songData, albumData, onDelete }) {
     useEffect(() => {
         if (albumData.cover !== "") {
             blobToBase64(albumData.cover).then((base64Image) => {
+                const img = new Image();
+                img.src = base64Image;
+                img.onload = () => {
+                    const ratio = img.width / img.height;
+                    const isHorizontal = ratio > 1.6;
+                    if (isHorizontal) {
+                        setImageStyling({ height: "100%" });
+                    }
+                    else {
+                        setImageStyling({ width: "100%" });
+                    }
+                }
                 setAlbumCover(base64Image);
             });
             setCssVariable(JSON.parse(localStorage.getItem("MusicPlayerColors")));
@@ -73,7 +86,7 @@ function MiniPlayer({ songData, albumData, onDelete }) {
         <div className="mini-player-wrapper">
             <div className="mini-player-preview">
                 <div className="song-cover">
-                    <img src={albumCover} alt='' />
+                    <img src={albumCover} alt='' style={imageStyling} />
                 </div>
                 <div className="player-controls">
                     <div className="song-play" onClick={handlePlayStop}>
@@ -86,7 +99,7 @@ function MiniPlayer({ songData, albumData, onDelete }) {
                         <VolumeRange max={1} value={volume} onChange={(val) => handleVolumeChange(val)} />
                     </div>
                     <div className='delete-audiofile' onClick={onDelete}>
-                        <DeleteSVG/>
+                        <DeleteSVG />
                     </div>
                 </div>
             </div>

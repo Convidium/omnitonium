@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import decodeImage from '../functions/decodeImage.js'
 import getAverageRGB from '../functions/getAverageColor.js';
+import "../../style/Form/addCover.scss"
 
 import { ReactComponent as UploadSVG } from '../../svg/upload.svg';
 import { ReactComponent as ImageSVG } from '../../svg/image.svg';
@@ -9,12 +10,23 @@ import { ReactComponent as CloseSVG } from '../../svg/close.svg';
 import { ReactComponent as ErrorSVG } from '../../svg/error.svg';
 import { ReactComponent as ReloadSVG } from '../../svg/reload.svg';
 
-function DropzoneImage({ onDataChange }) {
+function DropzoneImage({ onDataChange, initialData }) {
     const supportedExtensions = ['jpeg', 'png', 'jpg'];
-    const [URL, setURL] = useState("");
+    const [URL, setURL] = useState(initialData);
     const [imageState, setImageState] = useState("none");
     const [dragState, setDragState] = useState(false);
     const inputRef = useRef("");
+
+    useEffect(() => {
+        if (initialData === "" ||initialData === null) return;
+        const reader = new FileReader();
+        setImageState("loading");
+        reader.addEventListener("load", () => {
+            setURL(reader.result);
+            setImageState("loaded");
+        });
+        reader.readAsDataURL(initialData);
+    }, []);
 
     const handleSelected = (selectedFile) => {
         try {
@@ -121,7 +133,7 @@ function DropzoneImage({ onDataChange }) {
                 onDrop={onDrop}>
                 <input type='file' id="upload-file-input" name="upload-file-input"
                     onChange={(e) => handleSelected(e.target.files[0])}
-                    ref={inputRef} />
+                    ref={inputRef}/>
                 <UploadSVG onClick={upload} />
                 <span onClick={upload}>Drop record cover here</span>
                 <button
