@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import decodeSong from '../functions/decodeSong.js'
 import MiniPlayer from '../UI/MiniPlayer.js';
 
@@ -7,12 +7,19 @@ import { ReactComponent as LoadingSVG } from '../../svg/loading.svg';
 import { ReactComponent as ErrorSVG } from '../../svg/error.svg';
 import { ReactComponent as ReloadSVG } from '../../svg/reload.svg';
 
-function DropzoneSong({ handleAudiofile, albumData }) {
+function DropzoneSong({ handleAudiofile, albumData, audiofileExists, audiofile }) {
     const supportedExtensions = ['mp3', 'flac', 'ogg', "wav"];
     const [URL, setURL] = useState("");
     const [songState, setSongState] = useState("none");
     const [dragState, setDragState] = useState(false);
     const inputRef = useRef("");
+
+    useEffect(() => {
+        if (audiofileExists === false) {
+            setSongState("none");
+            setURL("");
+        }
+    }, [audiofileExists])
 
     const handleSelected = (selectedFile) => {
         try {

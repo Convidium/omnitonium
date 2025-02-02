@@ -1,9 +1,6 @@
 .song-properties-block {
     display: flex;
     flex-direction: column;
-    margin: var(--default-margin);
-    padding: 0 calc(var(--default-padding)*2);
-    background-color: var(--half-white);
 
     .header {
         margin: var(--default-margin);
@@ -20,17 +17,19 @@
 
     .song-properties {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 20px;
+        width: 100%;
         position: relative;
-        height: 100%;
-        flex: 1;
-        overflow-y: auto;
+
+        div {
+            flex: 1 1 0;
+        }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px 15px;
-            padding: var(--default-margin) 0;
         }
 
         .single-part {
@@ -80,19 +79,30 @@
 
         .reset-btn {
             background-color: var(--default-white);
-            border: 1px solid var(--half-white-shadow);
-            color: var(--neutral);
+            border: 2px solid var(--quarter-white);
+            color: var(--half-white-shadow);
+            &:hover{
+                color: var(--neutral);
+            }
 
             &:active {
-                border: 1px solid var(--half-black);
+                border: 2px solid var(--half-white-shadow);
                 color: var(--neutral);
             }
         }
 
         .submit-btn {
-            background-color: var(--accent-color);
-            border: 1px solid var(--onhover-color);
-            color: var(--onhover-color);
+            background-color: var(--success-light-color);
+            border: 2px solid var(--onhover-color);
+            color: var(--success-color);
+            opacity: 0.7;
+            &:hover{
+                opacity: 1;
+            }
+            &:active{
+                opacity: 1;
+                border: 2px solid var(--success-color);
+            }
         }
     }
 
@@ -105,8 +115,7 @@
     justify-content: space-around;
 
     .song-player-block {
-        height: 240px;
-        padding: var(--default-padding) 0;
+        height: 100%;
 
         .dropzone-block {
             display: flex;
@@ -137,7 +146,7 @@
                 border: 2px dashed var(--half-black);
             }
 
-            &.red{
+            &.red {
                 border: 2px dashed var(--error-color);
             }
         }

@@ -4,6 +4,7 @@
     justify-content: space-around;
     padding: 0 calc(var(--default-padding)*3);
     gap: 20px;
+    font-size: 120%;
     div{
         width: -webkit-fill-available;
         height: 400px;
@@ -22,7 +23,7 @@
 
         svg {
             fill: var(--neutral);
-            width: 40px;
+            width: 50px;
         }
 
         span {
@@ -78,7 +79,7 @@
         justify-content: center;
         width: 400px;
         height: 400px;
-        gap: var(--default-gap);
+        gap: calc(var(--default-gap)*2);
         border-radius: 5px;
         border: 2px solid transparent;
         object-fit: cover;

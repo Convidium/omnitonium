@@ -18,7 +18,7 @@ function DropzoneImage({ onDataChange, initialData }) {
     const inputRef = useRef("");
 
     useEffect(() => {
-        if (initialData === "" ||initialData === null) return;
+        if (initialData === "" || initialData === null) return;
         const reader = new FileReader();
         setImageState("loading");
         reader.addEventListener("load", () => {

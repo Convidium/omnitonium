@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ReactComponent as CloseSVG } from '../../svg/close.svg';
 
-function TagsInput({ onTagsChange, dataType }) {
+function TagsInput({ onTagsChange, dataType, initialData }) {
     const [tag, setTag] = useState("");
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState(initialData);
 
     const handleChange = (e) => {
         const { value } = e.target;

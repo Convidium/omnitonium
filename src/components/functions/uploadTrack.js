@@ -1,8 +1,6 @@
 import generateID from "./generateID.js";
 
-async function uploadTrack([audiofile, songName, writer, composer, info, albumID], callback ) {
-    const trackID = generateID("t");
-
+async function uploadTrack([audiofile, songName, writer, composer, info, albumID, trackID], callback ) {
     const formData = new FormData();
     formData.append("albumID", albumID);
     formData.append("generatedID", trackID);
@@ -21,7 +19,7 @@ async function uploadTrack([audiofile, songName, writer, composer, info, albumID
 
         if (response.ok) {
             console.log("Uploaded file path:", result.path);
-            callback("add-song-success", { messageType: "success", songName });
+            callback("add-song-success", { messageType: "success", songName }, trackID);
         } else {
             console.error("Upload failed:", result.error);
             callback("add-song-failed", { messageType: "error-fetch", songName });

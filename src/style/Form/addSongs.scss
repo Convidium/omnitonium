@@ -1,0 +1,84 @@
+.song-list-wrapper {
+    .song-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        border-radius: var(--default-border);
+        background-color: var(--quarter-white);
+        padding: var(--default-padding);
+
+        .song-item {
+            display: flex;
+            width: 95%;
+            background-color: var(--default-white);
+            border: 1px solid var(--half-white-shadow);
+            border-radius: var(--default-border);
+            padding: var(--default-padding);
+            // cursor: grab;
+            margin: 0 1px;
+
+            .song-position{
+                color: var(--neutral);
+                width: 6%;
+            }
+            .song-name{
+                width: 80%;
+            }
+            .song-duration{
+                color: var(--neutral);
+                width: 8%;
+            }
+            .song-drag{
+                display: flex;
+                justify-content: center;
+                width: 6%;
+                svg{
+                    fill: var(--neutral);
+                    width: 60%;
+                    cursor: grab;
+
+                    &:hover{
+                        fill: var(--default-black);
+                    }
+                }
+            }
+
+            &:hover {
+                box-shadow: var(--shadow-mini);
+            }
+        }
+
+        .drag-indicator{
+            width: 40%;
+            height: 3px;
+            background-color: var(--neutral);
+            border-radius: 5px;
+        }
+
+
+        .add-song {
+            padding: 0;
+
+            .add-song-message {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+                height: 50px;
+                text-align: center;
+                font-family: var(--font-default);
+                font-weight: 600;
+                font-size: var(--font-regular);
+                padding: var(--default-padding);
+                color: var(--neutral);
+                opacity: 0.6;
+                pointer-events: none;
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+}

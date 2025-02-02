@@ -18,6 +18,7 @@ function App() {
   const closeError = () => {
     setErrorState(false);
   }
+  
   return (
     <div className="App">
       <BrowserRouter>

@@ -15,6 +15,8 @@
 
     .form-content{
         width: -webkit-fill-available;
+        height: -webkit-fill-available;
+        overflow-y: scroll;
 
         .step-title{
             padding: 0 calc(var(--default-margin)*3) var(--default-margin);
@@ -23,5 +25,12 @@
             text-align: center;
             color: var(--half-black);
         }
+    }
+
+    .add-songs-block{
+        padding: 0 calc(var(--default-padding)*3);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 }
