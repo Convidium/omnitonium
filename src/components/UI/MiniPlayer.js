@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import "../../style/miniPlayer.scss"
+import "../../style/UI/miniPlayer.scss"
 import TrackRange from './TrackRange';
 import VolumeRange from './VolumeRange';
 import { ReactComponent as PlaySVG } from '../../svg/play.svg';

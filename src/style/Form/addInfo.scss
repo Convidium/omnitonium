@@ -28,3 +28,18 @@
 .record-data-block{
     width: 100%;
 }
+
+@media only screen and (max-width: 510px) {
+    /* For small screen devices: */
+    .content-addition {
+        grid-template-columns: 1fr;
+        padding: 0 calc(var(--default-padding)*2);
+        .single-part {
+            grid-auto-columns: 1fr;
+        }
+    
+        .double-part {
+            grid-column: auto;
+        }
+    }
+}

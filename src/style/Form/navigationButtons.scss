@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
 
-    .nav-btn{
+    .nav-btn {
         display: flex;
         align-items: center;
         justify-content: space-around;
@@ -18,47 +18,79 @@
         border: 2px solid var(--quarter-white);
         border-radius: var(--default-border);
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             transform: translateY(-2px);
         }
-        &:active{
+
+        &:active {
             transform: translateY(0);
         }
 
-        &.nav-back{
-            svg{
+        &.nav-back {
+            svg {
                 transform: rotate(180deg);
             }
         }
 
-        &.nav-confirm,&.nav-leave{
+        &.nav-confirm,
+        &.nav-leave {
             width: 120px;
         }
 
-        &.nav-confirm{
+        &.nav-confirm {
             color: var(--success-color);
-            &:active{
+
+            &:active {
                 border-color: var(--success-color);
             }
-            svg{
+
+            svg {
                 fill: var(--success-color);
             }
         }
 
-        &.nav-leave{
+        &.nav-leave {
             color: var(--error-color);
-            &:active{
+
+            &:active {
                 border-color: var(--error-color);
             }
-            svg{
+
+            svg {
                 transform: rotate(180deg);
                 fill: var(--error-color);
             }
         }
 
-        svg{
+        svg {
             height: 20px;
             fill: var(--neutral);
         }
+    }
+}
+
+
+@media only screen and (max-width: 1140px) {
+
+    /* For small screen devices: */
+    .form-btn-block {
+        padding: calc(var(--default-padding)*2);
+        .nav-btn {
+            font-size: 130%;
+            width: 130px;
+            &.nav-confirm,
+            &.nav-leave {
+                width: 150px;
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 650px) {
+    /* For small screen devices: */
+    .form-btn-block{
+        padding: var(--default-padding) calc(var(--default-padding)* 2);
     }
 }

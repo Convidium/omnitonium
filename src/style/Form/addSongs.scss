@@ -82,3 +82,18 @@
         }
     }
 }
+
+@media only screen and (max-width: 767px) {
+    /* For small screen devices: */
+    .song-properties-block {
+        .song-properties {
+            .grid {
+                grid-template-columns: 1fr;
+
+                .double-part {
+                    grid-column: auto;
+                }
+            }
+        }
+    }
+}

@@ -81,7 +81,8 @@
             background-color: var(--default-white);
             border: 2px solid var(--quarter-white);
             color: var(--half-white-shadow);
-            &:hover{
+
+            &:hover {
                 color: var(--neutral);
             }
 
@@ -96,10 +97,12 @@
             border: 2px solid var(--onhover-color);
             color: var(--success-color);
             opacity: 0.7;
-            &:hover{
+
+            &:hover {
                 opacity: 1;
             }
-            &:active{
+
+            &:active {
                 opacity: 1;
                 border: 2px solid var(--success-color);
             }
@@ -161,4 +164,33 @@
         }
     }
 
+}
+
+@media only screen and (max-width: 971px) {
+    /* For small screen devices: */
+    .song-properties-block {
+        .song-properties {
+            .grid {
+                grid-template-columns: 1fr;
+
+                .double-part {
+                    grid-column: auto;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    /* For small screen devices: */
+    .song-properties-block {
+        width: 100%;
+        .song-properties {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+    .song-block .song-player-block .dropzone-block {
+        aspect-ratio: 1.5;
+    }
 }

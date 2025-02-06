@@ -22,6 +22,7 @@
             justify-content: center;
             width: 15px;
             height: 15px;
+            aspect-ratio: 1;
             line-height: 15px;
             text-align: center;
             padding: var(--tiny-padding);
@@ -43,7 +44,8 @@
     .step-done {
         opacity: 0.6;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             opacity: 0.9;
         }
 
@@ -72,3 +74,82 @@
         }
     }
 }
+
+@media only screen and (max-width: 1140px) {
+
+    /* For small screen devices: */
+    .navbar {
+        padding: calc(var(--default-padding)*2);
+        gap: 10px;
+
+        .navbar-step {
+            justify-content: center;
+            font-size: 110%;
+            width: -webkit-fill-available;
+        }
+
+        .navbar-line {
+            width: -webkit-fill-available;
+        }
+    }
+}
+
+@media only screen and (max-width: 971px) {
+
+    /* For small screen devices: */
+    .navbar {
+        gap: 5px;
+
+        .navbar-step {
+            font-size: 110%;
+            width: 20%;
+        }
+
+        .navbar-line {
+            width: 15%;
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    /* For small screen devices: */
+    .navbar {
+        .navbar-step {
+            font-size: 100%;
+            width: 25%;
+        }
+
+        .navbar-line {
+            width: 8%;
+        }
+    }
+}
+
+@media only screen and (max-width: 510px) {
+
+    /* For small screen devices: */
+    .navbar {
+        .navbar-step:not(.step-active) {
+            display: none;
+        }
+
+        .navbar-step {
+            .step-number {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .step-active {
+            width: 100%;
+            font-size: 130%;
+        }
+
+        .navbar-line {
+            display: none;
+        }
+    }
+}
+
+.step-active {}

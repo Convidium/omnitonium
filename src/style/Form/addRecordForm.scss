@@ -11,14 +11,14 @@
     box-shadow: rgba(103, 70, 54, 0.12) 0px 1px 3px, rgba(103, 70, 54, 0.24) 0px 1px 2px;
     font-weight: 600;
     width: 900px;
-    max-width:80%;
+    max-width: 80%;
 
-    .form-content{
+    .form-content {
         width: -webkit-fill-available;
         height: -webkit-fill-available;
         overflow-y: scroll;
 
-        .step-title{
+        .step-title {
             padding: 0 calc(var(--default-margin)*3) var(--default-margin);
             font-size: 140%;
             font-family: "Grotezk Regular";
@@ -27,10 +27,34 @@
         }
     }
 
-    .add-songs-block{
+    .add-songs-block {
         padding: 0 calc(var(--default-padding)*3);
         display: flex;
         flex-direction: column;
         gap: 20px;
+    }
+}
+
+@media only screen and (max-width: 1140px) {
+    /* For small screen devices: */
+    .form-wrapper {
+        width: 90%;
+        max-width: 100%;
+        position: relative;
+        margin: var(--default-margin) 0;
+
+        .add-songs-block{
+            padding: 0 calc(var(--default-padding)* 2);
+        }
+    }
+}
+
+@media only screen and (max-width: 971px) {
+    /* For small screen devices: */
+    .form-wrapper {
+        width: 100%;
+        position: absolute;
+        margin: 0;
+        border-radius: 0px;
     }
 }

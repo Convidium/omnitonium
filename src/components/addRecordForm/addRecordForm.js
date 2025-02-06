@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import AddAlbumForm from './addAlbum/AddAlbumForm.js';
-// import AddSong from './addSong/AddSong.js';
 import TopMesageModal from '../modalBlockTemp/TopMessageModal.js';
 import generateID from '../functions/generateID.js';
 
